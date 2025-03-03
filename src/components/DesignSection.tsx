@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Code, Palette, Crop, Camera, ArrowRight } from 'lucide-react';
 
 const DesignCard = ({ title, icon, items, link }: { 
@@ -28,9 +27,9 @@ const DesignCard = ({ title, icon, items, link }: {
       </ul>
       
       {link && (
-        <Link to={link} className="inline-flex items-center text-primary hover:text-white transition-colors group-hover:translate-x-1 duration-300">
+        <a href={link} className="inline-flex items-center text-primary hover:text-white transition-colors group-hover:translate-x-1 duration-300">
           Läs mer <ArrowRight className="ml-1 w-4 h-4" />
-        </Link>
+        </a>
       )}
     </div>
   );
@@ -48,7 +47,7 @@ const DesignSection = () => {
         "Programering C++",
         "Teknisk projektledning"
       ],
-      link: "/design/teknisk-design"
+      link: "https://dgd.solutions/design/teknisk-design"
     },
     {
       title: "CAD & Visualisering",
@@ -59,7 +58,7 @@ const DesignSection = () => {
         "Illustration & Design",
         "Konstruktionsritning"
       ],
-      link: "/design/cad-visualisering"
+      link: "https://dgd.solutions/design/cad-visualisering"
     },
     {
       title: "Formgivning",
@@ -71,7 +70,7 @@ const DesignSection = () => {
         "Formtillverkning",
         "Modellbygge"
       ],
-      link: "/design/formgivning"
+      link: "https://dgd.solutions/design/formgivning"
     },
     {
       title: "Foto & Dokumentering",
@@ -80,7 +79,7 @@ const DesignSection = () => {
         "Fototjänster, på plats eller i studio",
         "Retuschering, formatering & montering"
       ],
-      link: "/design/foto"
+      link: "https://dgd.solutions/design/foto"
     }
   ];
 

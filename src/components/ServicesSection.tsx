@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CircuitBoard, Layers, Palette, FileCode, Camera } from 'lucide-react';
 
