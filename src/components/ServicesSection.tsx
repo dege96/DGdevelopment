@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { CircuitBoard, Layers, Palette3, FileCode, Camera } from 'lucide-react';
+import { CircuitBoard, Layers, Palette, FileCode, Camera } from 'lucide-react';
 
 const ServicesSection = () => {
   return (
@@ -23,7 +22,7 @@ const ServicesSection = () => {
               <div className="space-y-6 text-white/80">
                 <p>Nytillverkning eller avgjutning</p>
                 <p>Silikonavgjutning för extremt noggrann detaljåtergivning.</p>
-                <p>ColdMetal (metallimitation), glas/is eller alternativa ytbeläggningar.</p>
+                <p>ColdMetal (metalllimitation), glas/is eller alternativa ytbeläggningar.</p>
                 <p>Med patinering eller andra textur- och färgeffekter.</p>
                 
                 <div className="my-8 border-l-2 border-primary/50 pl-6">
