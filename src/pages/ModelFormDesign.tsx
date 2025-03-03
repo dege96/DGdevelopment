@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Layout from '@/components/Layout';
-import { Cube, Scissors, Layers, Printer3d, Box, Hammer } from 'lucide-react';
+import { Box, Scissors, Layers, Printer, Package, Hammer } from 'lucide-react';
 
 const ModelFormDesign = () => {
   return (
@@ -20,7 +20,7 @@ const ModelFormDesign = () => {
           <div className="glass rounded-xl p-8 md:p-10 mb-12 animate-slideUp opacity-0" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center mb-6">
               <div className="bg-secondary/50 p-4 rounded-lg mr-4">
-                <Cube className="w-6 h-6 text-primary" />
+                <Package className="w-6 h-6 text-primary" />
               </div>
               <h2 className="heading-md text-white">Avgjutning & Nytillverkning</h2>
             </div>
@@ -37,7 +37,7 @@ const ModelFormDesign = () => {
           <div className="glass rounded-xl p-8 md:p-10 mb-12 animate-slideUp opacity-0" style={{ animationDelay: '0.5s' }}>
             <div className="flex items-center mb-6">
               <div className="bg-secondary/50 p-4 rounded-lg mr-4">
-                <Printer3d className="w-6 h-6 text-primary" />
+                <Printer className="w-6 h-6 text-primary" />
               </div>
               <h2 className="heading-md text-white">3D Print & Design</h2>
             </div>
