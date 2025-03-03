@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Layout from '@/components/Layout';
 import { Code, Palette, Crop, Camera, ArrowRight } from 'lucide-react';
 
 const DesignCard = ({ title, icon, items, link }: { 
@@ -36,7 +37,7 @@ const DesignCard = ({ title, icon, items, link }: {
   );
 };
 
-const DesignSection = () => {
+const Design = () => {
   const designCards = [
     {
       title: "Teknisk design",
@@ -45,6 +46,7 @@ const DesignSection = () => {
         "Systemutveckling (Automation, Styrsystem)",
         "Produktdesign",
         "Elektronik/PLC/uController-styrning",
+        "Pneumatiklösningar",
         "Programering C++",
         "Teknisk projektledning"
       ],
@@ -57,6 +59,7 @@ const DesignSection = () => {
         "2D/3D visualisering (CAD/Rendering)",
         "Formdesign och Formtillverkning",
         "Illustration & Design",
+        "Bildhantering och Foto-retuschering",
         "Konstruktionsritning"
       ],
       link: "/design/cad-visualisering"
@@ -85,30 +88,32 @@ const DesignSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-secondary/10" id="design">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Design</h2>
-          <p className="max-w-3xl mx-auto text-white/70 mb-8 animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}>
-            "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning. Projektplan, manualer och annan dokumentation"
-          </p>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.6s' }}></div>
+    <Layout>
+      <section className="section-padding bg-secondary/10" id="design">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Design</h1>
+            <p className="max-w-3xl mx-auto text-white/70 mb-8 animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}>
+              "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning. Projektplan, manualer och annan dokumentation"
+            </p>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.6s' }}></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {designCards.map((card, index) => (
+              <DesignCard 
+                key={index}
+                title={card.title}
+                icon={card.icon}
+                items={card.items}
+                link={card.link}
+              />
+            ))}
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {designCards.map((card, index) => (
-            <DesignCard 
-              key={index}
-              title={card.title}
-              icon={card.icon}
-              items={card.items}
-              link={card.link}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </Layout>
   );
 };
 
-export default DesignSection;
+export default Design;
