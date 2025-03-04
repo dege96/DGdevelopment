@@ -8,25 +8,33 @@ import ImageCarousel from '@/components/ImageCarousel';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Palette, Cpu, Camera } from 'lucide-react';
 
-const ServiceCard = ({ title, description, icon, link, images }: { 
+const ServiceCard = ({ title, description, icon, link, imageData }: { 
   title: string; 
   description: string; 
   icon: React.ReactNode; 
   link: string;
-  images?: { src: string; alt: string; }[];
+  imageData?: {
+    src: string;
+    alt: string;
+    description?: string;
+  };
 }) => {
+  if (imageData) {
+    return (
+      <ImageCarousel 
+        images={[{ src: imageData.src, alt: imageData.alt }]}
+        category={title}
+        description={imageData.description || description}
+        showAllLink={link}
+        showAsImageCard={true}
+        className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
+        style={{ animationDelay: '0.3s' }}
+      />
+    );
+  }
+
   return (
     <div className="glass p-6 rounded-xl hover:bg-white/5 transition-all duration-300 group animate-slideUp opacity-0" style={{ animationDelay: '0.3s' }}>
-      {images && images.length > 0 && (
-        <div className="mb-6">
-          <ImageCarousel 
-            images={images} 
-            category={title} 
-            showAllLink={link}
-            aspectRatio="video"
-          />
-        </div>
-      )}
       <div className="flex items-center mb-4">
         <div className="bg-secondary/50 p-3 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors">
           {icon}
@@ -64,52 +72,37 @@ const Index = () => {
 
   const services = [
     {
-      title: "Design & Formgivning",
-      description: "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning.",
+      title: "Webb- & Apputveckling",
+      description: "Bygg användarvänliga webb- och mobilappar",
       icon: <Palette className="w-5 h-5 text-primary" />,
       link: "/design-formgivning",
-      images: [
-        {
-          src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-          alt: "Design & Formgivning - Kreativ designprocess"
-        },
-        {
-          src: "/lovable-uploads/529cb13a-7c56-43a0-a054-5d5a6b4eac6f.png",
-          alt: "Presentation design"
-        }
-      ]
+      imageData: {
+        src: "https://images.unsplash.com/photo-1517292987719-0369a794ec0f",
+        alt: "Webb- & Apputveckling",
+        description: "Bygg användarvänliga webb- och mobilappar"
+      }
     },
     {
-      title: "Tekniska Lösningar",
-      description: "CAD/CAM & Teknisk Visualisering, Prototypframställning, Tillverkningsmetoder och mer.",
+      title: "Presentation",
+      description: "Designa professionella presentationer",
       icon: <Cpu className="w-5 h-5 text-primary" />,
       link: "/tekniska-losningar",
-      images: [
-        {
-          src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-          alt: "Tekniska Lösningar - Datorbaserad design"
-        },
-        {
-          src: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-          alt: "Tekniska Lösningar - Kretskort och elektronik"
-        }
-      ]
+      imageData: {
+        src: "https://images.unsplash.com/photo-1542744094-3a31f272c490",
+        alt: "Presentationsdesign",
+        description: "Designa professionella presentationer"
+      }
     },
     {
-      title: "Media",
-      description: "Produktfotografering, Eventdokumentation och Naturfotogalleri.",
+      title: "AI Lösningar",
+      description: "Automatisera och optimera med AI",
       icon: <Camera className="w-5 h-5 text-primary" />,
       link: "/media",
-      images: [
-        {
-          src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-          alt: "Media - Professionell produktion"
-        },
-        {
-          src: "https://images.unsplash.com/photo-1473091534298-04dcbce3278c",
-          alt: "Media - Kreativ fotografi"
-        }
-      ]
+      imageData: {
+        src: "https://images.unsplash.com/photo-1677442135868-8e40c6d64f5b",
+        alt: "AI Lösningar",
+        description: "Automatisera och optimera med AI"
+      }
     }
   ];
 
@@ -138,7 +131,7 @@ const Index = () => {
                 description={service.description}
                 icon={service.icon}
                 link={service.link}
-                images={service.images}
+                imageData={service.imageData}
               />
             ))}
           </div>
