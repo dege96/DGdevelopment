@@ -2,16 +2,36 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Camera, Image, Film, ArrowRight } from 'lucide-react';
+import { Camera, Film, Image, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const SectionHeader = ({ id, title, icon }: { id: string, title: string, icon: React.ReactNode }) => {
+const SectionCard = ({ 
+  id, 
+  title, 
+  icon, 
+  description, 
+  link 
+}: { 
+  id: string, 
+  title: string, 
+  icon: React.ReactNode, 
+  description: string,
+  link: string 
+}) => {
   return (
-    <div id={id} className="mb-6 mt-12 pt-6 border-t border-white/10">
-      <h3 className="heading-md mb-4 text-white flex items-center">
+    <div className="glass p-6 rounded-xl">
+      <h3 className="text-xl font-semibold mb-4 text-white flex items-center">
         {icon}
         <span className="ml-3">{title}</span>
       </h3>
+      <p className="text-white/70 mb-6">{description}</p>
+      <Link
+        to={link}
+        className="flex items-center text-primary hover:text-primary/80 transition-colors group"
+      >
+        Läs mer
+        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+      </Link>
     </div>
   );
 };
@@ -55,54 +75,36 @@ const Media = () => {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
+            <p className="text-white/80 mb-10">
+              Vi erbjuder professionella mediatjänster för att dokumentera och presentera dina produkter, event och 
+              annat innehåll. Vårt team av erfarna fotografer kombinerar teknisk kompetens med ett kreativt öga för 
+              att leverera högkvalitativa resultat. Utforska våra mediatjänster nedan.
+            </p>
             
-            <SectionHeader 
-              id="produktfoto" 
-              title="Produktfotografering" 
-              icon={<Camera className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4 mb-8">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Fototjänster, på plats eller i studio.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Retuschering, formatering & montering</span>
-              </li>
-            </ul>
-
-            <SectionHeader 
-              id="event" 
-              title="Eventdokumentation" 
-              icon={<Film className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4 mb-8">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Fototjänster, på plats eller i studio.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Retuschering, formatering & montering</span>
-              </li>
-            </ul>
-
-            <div className="mt-12 p-6 bg-background/40 rounded-lg border border-white/10">
-              <div className="flex items-center mb-4">
-                <Image className="text-primary mr-3" size={24} />
-                <h3 className="text-xl font-semibold text-white">Naturfotogalleri</h3>
-              </div>
-              <p className="text-white/70 mb-6">
-                Utforska vår samling av högkvalitativa naturfotografier. Varje bild fångar naturens skönhet och detaljer.
-              </p>
-              <Link 
-                to="/media/naturfoto" 
-                className="inline-flex items-center glass hover:bg-white/10 text-white px-6 py-2 rounded-full transition-all duration-300 group"
-              >
-                Se galleriet
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-              </Link>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <SectionCard 
+                id="produktfotografering"
+                title="Produktfotografering"
+                icon={<Camera className="text-primary" size={24} />}
+                description="Professionell fotografering av produkter för marknadsföring, e-handel och dokumentation."
+                link="/media/produktfotografering"
+              />
+              
+              <SectionCard 
+                id="eventdokumentation"
+                title="Eventdokumentation"
+                icon={<Film className="text-primary" size={24} />}
+                description="Omfattande dokumentation av företagsevent, konferenser, mässor och andra tillfällen."
+                link="/media/eventdokumentation"
+              />
+              
+              <SectionCard 
+                id="naturfoto"
+                title="Naturfotogalleri"
+                icon={<Image className="text-primary" size={24} />}
+                description="Utforska vår samling av högkvalitativa naturfotografier."
+                link="/media/naturfoto"
+              />
             </div>
             
           </div>

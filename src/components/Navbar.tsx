@@ -27,32 +27,31 @@ const Navbar = () => {
   };
 
   const mainNavItems = [
-    { title: 'Start', path: '/' },
     { 
       title: 'Design & Formgivning', 
       path: '/design-formgivning', 
       submenu: [
-        { title: 'Konceptdesign', path: '/design-formgivning#konceptdesign' },
-        { title: 'Produktdesign', path: '/design-formgivning#produktdesign' },
-        { title: 'Grafisk design', path: '/design-formgivning#grafisk-design' },
-        { title: 'Designverktyg', path: '/design-formgivning#designverktyg' },
+        { title: 'Teknisk design', path: '/design-formgivning/teknisk-design' },
+        { title: 'CAD & Visualisering', path: '/design-formgivning/cad-visualisering' },
+        { title: 'Formgivning', path: '/design-formgivning/formgivning' },
+        { title: 'Foto & Dokumentering', path: '/design-formgivning/foto-dokumentering' },
       ] 
     },
     { 
       title: 'Tekniska Lösningar', 
       path: '/tekniska-losningar',
       submenu: [
-        { title: 'CAD/CAM & Teknisk Visualisering', path: '/tekniska-losningar#cad-cam' },
-        { title: 'Prototypframställning', path: '/tekniska-losningar#prototyp' },
-        { title: 'Tillverkningsmetoder', path: '/tekniska-losningar#tillverkning' },
+        { title: 'CAD/CAM & Teknisk Visualisering', path: '/tekniska-losningar/cad-cam' },
+        { title: 'Prototypframställning', path: '/tekniska-losningar/prototyp' },
+        { title: 'Tillverkningsmetoder', path: '/tekniska-losningar/tillverkning' },
       ]
     },
     { 
       title: 'Media', 
       path: '/media',
       submenu: [
-        { title: 'Produktfotografering', path: '/media#produktfoto' },
-        { title: 'Eventdokumentation', path: '/media#event' },
+        { title: 'Produktfotografering', path: '/media/produktfotografering' },
+        { title: 'Eventdokumentation', path: '/media/eventdokumentation' },
         { title: 'Naturfotogalleri', path: '/media/naturfoto' },
       ] 
     },

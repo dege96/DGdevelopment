@@ -2,15 +2,36 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CircuitBoard, Cpu, Layers3, ChefHat } from 'lucide-react';
+import { CircuitBoard, Cpu, Layers3, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const SectionHeader = ({ id, title, icon }: { id: string, title: string, icon: React.ReactNode }) => {
+const SectionCard = ({ 
+  id, 
+  title, 
+  icon, 
+  description, 
+  link 
+}: { 
+  id: string, 
+  title: string, 
+  icon: React.ReactNode, 
+  description: string,
+  link: string 
+}) => {
   return (
-    <div id={id} className="mb-6 mt-12 pt-6 border-t border-white/10">
-      <h3 className="heading-md mb-4 text-white flex items-center">
+    <div className="glass p-6 rounded-xl">
+      <h3 className="text-xl font-semibold mb-4 text-white flex items-center">
         {icon}
         <span className="ml-3">{title}</span>
       </h3>
+      <p className="text-white/70 mb-6">{description}</p>
+      <Link
+        to={link}
+        className="flex items-center text-primary hover:text-primary/80 transition-colors group"
+      >
+        Läs mer
+        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+      </Link>
     </div>
   );
 };
@@ -54,94 +75,38 @@ const TekniskaLosningar = () => {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
+            <p className="text-white/80 mb-10">
+              Vi erbjuder ett brett utbud av tekniska lösningar och tillverkningsmetoder för att hjälpa dig förverkliga 
+              dina idéer. Från avancerad CAD/CAM-visualisering och prototypframställning till olika tillverkningsmetoder, 
+              har vårt team den expertis som krävs för att leverera högkvalitativa resultat. Utforska våra tekniska 
+              tjänster nedan för att lära dig mer om vad vi kan erbjuda.
+            </p>
             
-            <SectionHeader 
-              id="cad-cam" 
-              title="CAD/CAM & Teknisk Visualisering" 
-              icon={<CircuitBoard className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>2D/3D visualisering (CAD/Rendering)</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Konstruktionsritning (Mekanik, Elektronik, Elektromekanik)</span>
-              </li>
-            </ul>
-
-            <SectionHeader 
-              id="prototyp" 
-              title="Prototypframställning" 
-              icon={<Cpu className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 gap-4 text-white/80 ml-4">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>3D design & 3D print</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>3D print: OneOff eller korta serier med mått upp till 2100x80x80 cm. Inklusive design av modell.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Modellbygge</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>"Klassiskt" modellbygge för utställning, konceptstudie mm.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Med eller utan ljussättning och mekatronik.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Formtillverkning (Nytillverkning eller avgjutning)</span>
-              </li>
-            </ul>
-
-            <SectionHeader 
-              id="tillverkning" 
-              title="Tillverkningsmetoder" 
-              icon={<Layers3 className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 gap-4 text-white/80 ml-4">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Frihand/Hantverk eller kombinerade processer som t.ex:</span>
-              </li>
-              <li className="flex items-start ml-6">
-                <span className="text-primary mr-2">-</span>
-                <span>CNC-Fräsning, Vatten/Laserskärning och annan avverkande bearbetning.</span>
-              </li>
-              <li className="flex items-start ml-6">
-                <span className="text-primary mr-2">-</span>
-                <span>Additiv tillverkning som t.ex Vacuum-laminering, Formgjutning, 3D-printning mm</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Elektronik/PLC/uController-styrning eller pneumatiklösningar</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Dito programering C++</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Silikonavgjutning för extremt noggrann detaljåtergivning.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>ColdMetal (metallimitation), glas/is eller alternativa ytbeläggningar.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Med patinering eller andra textur- och färgeffekter.</span>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <SectionCard 
+                id="cad-cam"
+                title="CAD/CAM & Teknisk Visualisering"
+                icon={<CircuitBoard className="text-primary" size={24} />}
+                description="Avancerad 2D/3D visualisering och konstruktionsritningar för dina tekniska projekt."
+                link="/tekniska-losningar/cad-cam"
+              />
+              
+              <SectionCard 
+                id="prototyp"
+                title="Prototypframställning"
+                icon={<Cpu className="text-primary" size={24} />}
+                description="3D-utskrifter, modellbygge och formtillverkning för att skapa fysiska prototyper."
+                link="/tekniska-losningar/prototyp"
+              />
+              
+              <SectionCard 
+                id="tillverkning"
+                title="Tillverkningsmetoder"
+                icon={<Layers3 className="text-primary" size={24} />}
+                description="Kombinationer av traditionellt hantverk och moderna tillverkningsmetoder."
+                link="/tekniska-losningar/tillverkning"
+              />
+            </div>
             
           </div>
         </div>
