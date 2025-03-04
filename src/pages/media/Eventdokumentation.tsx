@@ -4,8 +4,25 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Film, FileEdit, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const Eventdokumentation = () => {
+  // Sample event documentation images
+  const eventImages = [
+    { 
+      src: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Corporate event documentation" 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Conference documentation" 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Exhibition documentation" 
+    },
+  ];
+
   // Animation observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -47,6 +64,15 @@ const Eventdokumentation = () => {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
+            
+            {/* Image Carousel */}
+            <div className="mb-10">
+              <ImageCarousel 
+                images={eventImages} 
+                category="Eventdokumentation" 
+                showAllLink="/media/eventdokumentation/gallery" 
+              />
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* Left column */}

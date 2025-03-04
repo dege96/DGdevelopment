@@ -4,8 +4,25 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Camera, FileEdit } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const Produktfotografering = () => {
+  // Sample product photography images
+  const productImages = [
+    { 
+      src: "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Product photography example 1" 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1583209814683-c023dd293cc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Product photography example 2" 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
+      alt: "Product photography example 3" 
+    },
+  ];
+
   // Animation observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -47,6 +64,15 @@ const Produktfotografering = () => {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
+            
+            {/* Image Carousel */}
+            <div className="mb-10">
+              <ImageCarousel 
+                images={productImages} 
+                category="Produktfotografering" 
+                showAllLink="/media/produktfotografering/gallery" 
+              />
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {/* Left column */}

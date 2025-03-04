@@ -23,7 +23,7 @@ import Tillverkning from "./pages/tekniska/Tillverkning";
 import Media from "./pages/Media";
 import Produktfotografering from "./pages/media/Produktfotografering";
 import Eventdokumentation from "./pages/media/Eventdokumentation";
-import Naturfoto from "./pages/Naturfoto";
+import Naturfoto from "./pages/media/Naturfoto";
 
 // Other pages
 import OmOss from "./pages/OmOss";
