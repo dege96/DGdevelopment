@@ -4,12 +4,29 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProcessSteps from '@/components/ProcessSteps';
 import Footer from '@/components/Footer';
+import ImageCarousel from '@/components/ImageCarousel';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Palette, Cpu, Camera, Users, FileText } from 'lucide-react';
+import { ArrowRight, Palette, Cpu, Camera } from 'lucide-react';
 
-const ServiceCard = ({ title, description, icon, link }: { title: string; description: string; icon: React.ReactNode; link: string }) => {
+const ServiceCard = ({ title, description, icon, link, images }: { 
+  title: string; 
+  description: string; 
+  icon: React.ReactNode; 
+  link: string;
+  images?: { src: string; alt: string; }[];
+}) => {
   return (
     <div className="glass p-6 rounded-xl hover:bg-white/5 transition-all duration-300 group animate-slideUp opacity-0" style={{ animationDelay: '0.3s' }}>
+      {images && images.length > 0 && (
+        <div className="mb-6">
+          <ImageCarousel 
+            images={images} 
+            category={title} 
+            showAllLink={link}
+            aspectRatio="video"
+          />
+        </div>
+      )}
       <div className="flex items-center mb-4">
         <div className="bg-secondary/50 p-3 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors">
           {icon}
@@ -50,32 +67,50 @@ const Index = () => {
       title: "Design & Formgivning",
       description: "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning.",
       icon: <Palette className="w-5 h-5 text-primary" />,
-      link: "/design-formgivning"
+      link: "/design-formgivning",
+      images: [
+        {
+          src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+          alt: "Design & Formgivning - Kreativ designprocess"
+        },
+        {
+          src: "/lovable-uploads/529cb13a-7c56-43a0-a054-5d5a6b4eac6f.png",
+          alt: "Presentation design"
+        }
+      ]
     },
     {
       title: "Tekniska Lösningar",
       description: "CAD/CAM & Teknisk Visualisering, Prototypframställning, Tillverkningsmetoder och mer.",
       icon: <Cpu className="w-5 h-5 text-primary" />,
-      link: "/tekniska-losningar"
+      link: "/tekniska-losningar",
+      images: [
+        {
+          src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+          alt: "Tekniska Lösningar - Datorbaserad design"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+          alt: "Tekniska Lösningar - Kretskort och elektronik"
+        }
+      ]
     },
     {
       title: "Media",
       description: "Produktfotografering, Eventdokumentation och Naturfotogalleri.",
       icon: <Camera className="w-5 h-5 text-primary" />,
-      link: "/media"
-    },
-    {
-      title: "Om Oss",
-      description: "Lär känna DG Development och våra tjänster, vår kapacitet och expertis.",
-      icon: <Users className="w-5 h-5 text-primary" />,
-      link: "/om-oss"
-    },
-    {
-      title: "Kontakt",
-      description: "Kontakta oss för att diskutera ditt projekt eller för att få mer information.",
-      icon: <FileText className="w-5 h-5 text-primary" />,
-      link: "/kontakt"
-    },
+      link: "/media",
+      images: [
+        {
+          src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+          alt: "Media - Professionell produktion"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1473091534298-04dcbce3278c",
+          alt: "Media - Kreativ fotografi"
+        }
+      ]
+    }
   ];
 
   return (
@@ -103,6 +138,7 @@ const Index = () => {
                 description={service.description}
                 icon={service.icon}
                 link={service.link}
+                images={service.images}
               />
             ))}
           </div>

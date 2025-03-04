@@ -10,9 +10,19 @@ interface ImageCarouselProps {
   }[];
   category: string;
   showAllLink?: string;
+  className?: string;
+  aspectRatio?: "video" | "square" | "auto";
+  height?: string;
 }
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, category, showAllLink }) => {
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ 
+  images, 
+  category, 
+  showAllLink,
+  className = "",
+  aspectRatio = "video",
+  height
+}) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const nextSlide = () => {
@@ -23,9 +33,21 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, category, showAll
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
+  const getAspectRatioClass = () => {
+    switch (aspectRatio) {
+      case "square": return "aspect-square";
+      case "video": return "aspect-[16/9]";
+      case "auto": return "";
+      default: return "aspect-[16/9]";
+    }
+  };
+
   return (
-    <div className="w-full relative">
-      <div className="aspect-[16/9] relative overflow-hidden rounded-lg mb-4">
+    <div className={`w-full relative ${className}`}>
+      <div 
+        className={`${getAspectRatioClass()} relative overflow-hidden rounded-lg mb-4 ${height ? '' : ''}`}
+        style={height ? { height } : {}}
+      >
         {images.map((image, index) => (
           <div
             key={index}
