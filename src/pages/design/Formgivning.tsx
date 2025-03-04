@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Printer, Shapes, Laser, Box } from 'lucide-react';
+import { Printer, Shapes, Zap, Box } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Formgivning = () => {
@@ -80,7 +80,7 @@ const Formgivning = () => {
               <div>
                 <div className="mb-8">
                   <h3 className="heading-md mb-4 text-white flex items-center">
-                    <Laser className="text-primary mr-3" size={24} />
+                    <Zap className="text-primary mr-3" size={24} />
                     <span>Lasergravering</span>
                   </h3>
                   <p className="text-white/80 mb-4">

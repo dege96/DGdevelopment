@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Cpu, Palette, Cube, Camera, ArrowRight } from 'lucide-react';
+import { Cpu, Palette, Box, Camera, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SectionCard = ({ 
@@ -94,7 +94,7 @@ const DesignFormgivning = () => {
               <SectionCard 
                 id="cad-visualisering"
                 title="CAD & Visualisering"
-                icon={<Cube className="text-primary" size={24} />}
+                icon={<Box className="text-primary" size={24} />}
                 description="2D/3D visualisering, formdesign och konstruktionsritningar för att visualisera dina idéer."
                 link="/design-formgivning/cad-visualisering"
               />
