@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CircuitBoard, Cpu, Layers3, ChefHat } from 'lucide-react';
+import { Code, Palette, Crop, Camera, Lightbulb, Shapes } from 'lucide-react';
 
 const SectionHeader = ({ id, title, icon }: { id: string, title: string, icon: React.ReactNode }) => {
   return (
@@ -15,7 +15,7 @@ const SectionHeader = ({ id, title, icon }: { id: string, title: string, icon: R
   );
 };
 
-const TekniskaLosningar = () => {
+const DesignFormgivning = () => {
   // Animation observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -43,9 +43,9 @@ const TekniskaLosningar = () => {
       {/* Page Header */}
       <div className="pt-32 pb-12 bg-gradient-to-b from-secondary/20 to-background">
         <div className="container mx-auto px-6">
-          <h1 className="heading-lg mb-4 animate-slideDown opacity-0">Tekniska Lösningar</h1>
+          <h1 className="heading-lg mb-4 animate-slideDown opacity-0">Design & Formgivning</h1>
           <p className="text-white/70 max-w-3xl animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>
-            Skräddarsydda tekniska lösningar för ditt projekt
+            Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning. Projektplan, manualer och annan dokumentation
           </p>
         </div>
       </div>
@@ -56,9 +56,57 @@ const TekniskaLosningar = () => {
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
             
             <SectionHeader 
-              id="cad-cam" 
-              title="CAD/CAM & Teknisk Visualisering" 
-              icon={<CircuitBoard className="text-primary" size={24} />} 
+              id="konceptdesign" 
+              title="Konceptdesign" 
+              icon={<Lightbulb className="text-primary" size={24} />} 
+            />
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4">
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Systemutveckling (Automation, Styrsystem)</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Teknisk projektledning</span>
+              </li>
+            </ul>
+
+            <SectionHeader 
+              id="produktdesign" 
+              title="Produktdesign" 
+              icon={<Shapes className="text-primary" size={24} />} 
+            />
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4">
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Produktdesign</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Formdesign och Formtillverkning</span>
+              </li>
+            </ul>
+
+            <SectionHeader 
+              id="grafisk-design" 
+              title="Grafisk design" 
+              icon={<Palette className="text-primary" size={24} />} 
+            />
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4">
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Illustration & Design</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                <span>Bildhantering och Foto-retuschering</span>
+              </li>
+            </ul>
+
+            <SectionHeader 
+              id="designverktyg" 
+              title="Designverktyg" 
+              icon={<Crop className="text-primary" size={24} />} 
             />
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white/80 ml-4">
               <li className="flex items-start">
@@ -69,77 +117,17 @@ const TekniskaLosningar = () => {
                 <span className="text-primary mr-2">•</span>
                 <span>Konstruktionsritning (Mekanik, Elektronik, Elektromekanik)</span>
               </li>
-            </ul>
-
-            <SectionHeader 
-              id="prototyp" 
-              title="Prototypframställning" 
-              icon={<Cpu className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 gap-4 text-white/80 ml-4">
               <li className="flex items-start">
                 <span className="text-primary mr-2">•</span>
                 <span>3D design & 3D print</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2">•</span>
-                <span>3D print: OneOff eller korta serier med mått upp till 2100x80x80 cm. Inklusive design av modell.</span>
+                <span>Traditionell skulptering</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2">•</span>
-                <span>Modellbygge</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>"Klassiskt" modellbygge för utställning, konceptstudie mm.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Med eller utan ljussättning och mekatronik.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Formtillverkning (Nytillverkning eller avgjutning)</span>
-              </li>
-            </ul>
-
-            <SectionHeader 
-              id="tillverkning" 
-              title="Tillverkningsmetoder" 
-              icon={<Layers3 className="text-primary" size={24} />} 
-            />
-            <ul className="grid grid-cols-1 gap-4 text-white/80 ml-4">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Frihand/Hantverk eller kombinerade processer som t.ex:</span>
-              </li>
-              <li className="flex items-start ml-6">
-                <span className="text-primary mr-2">-</span>
-                <span>CNC-Fräsning, Vatten/Laserskärning och annan avverkande bearbetning.</span>
-              </li>
-              <li className="flex items-start ml-6">
-                <span className="text-primary mr-2">-</span>
-                <span>Additiv tillverkning som t.ex Vacuum-laminering, Formgjutning, 3D-printning mm</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Elektronik/PLC/uController-styrning eller pneumatiklösningar</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Dito programering C++</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Silikonavgjutning för extremt noggrann detaljåtergivning.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>ColdMetal (metallimitation), glas/is eller alternativa ytbeläggningar.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Med patinering eller andra textur- och färgeffekter.</span>
+                <span>Lasergravering</span>
               </li>
             </ul>
             
@@ -152,4 +140,4 @@ const TekniskaLosningar = () => {
   );
 };
 
-export default TekniskaLosningar;
+export default DesignFormgivning;

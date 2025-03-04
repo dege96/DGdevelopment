@@ -5,12 +5,17 @@ import Hero from '@/components/Hero';
 import ProcessSteps from '@/components/ProcessSteps';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Palette, Cpu, Camera, Users, FileText } from 'lucide-react';
 
-const ServiceCard = ({ title, description, link }: { title: string; description: string; link: string }) => {
+const ServiceCard = ({ title, description, icon, link }: { title: string; description: string; icon: React.ReactNode; link: string }) => {
   return (
     <div className="glass p-6 rounded-xl hover:bg-white/5 transition-all duration-300 group animate-slideUp opacity-0" style={{ animationDelay: '0.3s' }}>
-      <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+      <div className="flex items-center mb-4">
+        <div className="bg-secondary/50 p-3 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors">
+          {icon}
+        </div>
+        <h3 className="text-xl font-semibold text-white">{title}</h3>
+      </div>
       <p className="text-white/70 mb-4">{description}</p>
       <Link to={link} className="inline-flex items-center text-primary hover:text-white transition-colors group-hover:translate-x-1 duration-300">
         Läs mer <ArrowRight className="ml-1 w-4 h-4" />
@@ -42,29 +47,34 @@ const Index = () => {
 
   const services = [
     {
-      title: "Design",
+      title: "Design & Formgivning",
       description: "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning.",
-      link: "/design"
-    },
-    {
-      title: "Modell & Formgivning",
-      description: "Formtillverkning & Prototyper, från mindre uppdrag till omfattande system med fullt turnkey-ansvar.",
-      link: "/modell-formgivning"
+      icon: <Palette className="w-5 h-5 text-primary" />,
+      link: "/design-formgivning"
     },
     {
       title: "Tekniska Lösningar",
-      description: "Systemutveckling, Produktdesign, Elektronik/PLC-styrning, Programmering och mycket mer.",
+      description: "CAD/CAM & Teknisk Visualisering, Prototypframställning, Tillverkningsmetoder och mer.",
+      icon: <Cpu className="w-5 h-5 text-primary" />,
       link: "/tekniska-losningar"
     },
     {
-      title: "CAD/CAM & Visualisering",
-      description: "2D/3D visualisering, Formdesign, Illustration & Design, Konstruktionsritning.",
-      link: "/cad-visualisering"
+      title: "Media",
+      description: "Produktfotografering, Eventdokumentation och Naturfotogalleri.",
+      icon: <Camera className="w-5 h-5 text-primary" />,
+      link: "/media"
     },
     {
-      title: "Foto & Dokumentation",
-      description: "Fototjänster, Retuschering, Manualer, Instruktioner och Projektplaner.",
-      link: "/foto-dokumentation"
+      title: "Om Oss",
+      description: "Lär känna DG Development och våra tjänster, vår kapacitet och expertis.",
+      icon: <Users className="w-5 h-5 text-primary" />,
+      link: "/om-oss"
+    },
+    {
+      title: "Kontakt",
+      description: "Kontakta oss för att diskutera ditt projekt eller för att få mer information.",
+      icon: <FileText className="w-5 h-5 text-primary" />,
+      link: "/kontakt"
     },
   ];
 
@@ -91,6 +101,7 @@ const Index = () => {
                 key={index}
                 title={service.title}
                 description={service.description}
+                icon={service.icon}
                 link={service.link}
               />
             ))}

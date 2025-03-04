@@ -29,38 +29,34 @@ const Navbar = () => {
   const mainNavItems = [
     { title: 'Start', path: '/' },
     { 
-      title: 'Design', 
-      path: '/design', 
+      title: 'Design & Formgivning', 
+      path: '/design-formgivning', 
       submenu: [
-        { title: 'Teknisk Design', path: '/design#teknisk-design' },
-        { title: 'CAD & Visualisering', path: '/design#cad-visualisering' },
-        { title: 'Formgivning', path: '/design#formgivning' },
-        { title: 'Foto & Dokumentering', path: '/design#foto-dokumentering' },
+        { title: 'Konceptdesign', path: '/design-formgivning#konceptdesign' },
+        { title: 'Produktdesign', path: '/design-formgivning#produktdesign' },
+        { title: 'Grafisk design', path: '/design-formgivning#grafisk-design' },
+        { title: 'Designverktyg', path: '/design-formgivning#designverktyg' },
       ] 
     },
     { 
-      title: 'Modell & Formgivning', 
-      path: '/modell-formgivning',
+      title: 'Tekniska Lösningar', 
+      path: '/tekniska-losningar',
       submenu: [
-        { title: 'Avgjutning & Nytillverkning', path: '/modell-formgivning#avgjutning' },
-        { title: '3D Print & Design', path: '/modell-formgivning#3d-print' },
-        { title: 'Specialprodukter', path: '/modell-formgivning#specialprodukter' },
-        { title: 'Lasergravering', path: '/modell-formgivning#lasergravering' },
-        { title: 'Plugg & Formtillverkning', path: '/modell-formgivning#formtillverkning' },
-        { title: 'Modellbygge', path: '/modell-formgivning#modellbygge' },
-        { title: 'Tillverkningsmetoder', path: '/modell-formgivning#tillverkningsmetoder' },
+        { title: 'CAD/CAM & Teknisk Visualisering', path: '/tekniska-losningar#cad-cam' },
+        { title: 'Prototypframställning', path: '/tekniska-losningar#prototyp' },
+        { title: 'Tillverkningsmetoder', path: '/tekniska-losningar#tillverkning' },
       ]
     },
-    { title: 'Tekniska Lösningar', path: '/tekniska-losningar' },
-    { title: 'CAD/CAM & Visualisering', path: '/cad-visualisering' },
     { 
-      title: 'Foto & Dokumentation', 
-      path: '/foto-dokumentation',
+      title: 'Media', 
+      path: '/media',
       submenu: [
-        { title: 'Produkt & Event', path: '/foto-dokumentation/produkt-event' },
-        { title: 'Natur', path: '/foto-dokumentation/natur' },
+        { title: 'Produktfotografering', path: '/media#produktfoto' },
+        { title: 'Eventdokumentation', path: '/media#event' },
+        { title: 'Naturfotogalleri', path: '/media/naturfoto' },
       ] 
     },
+    { title: 'Om Oss', path: '/om-oss' },
     { title: 'Kontakt', path: '/kontakt' },
   ];
 
