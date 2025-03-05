@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -16,6 +15,7 @@ interface ImageCarouselProps {
   height?: string;
   showAsImageCard?: boolean;
   actionText?: string;
+  style?: React.CSSProperties;
 }
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ 
@@ -27,7 +27,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   aspectRatio = "video",
   height,
   showAsImageCard = false,
-  actionText = "Lär dig mer"
+  actionText = "Lär dig mer",
+  style
 }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -51,15 +52,16 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   // Render as a single image card with text overlay
   if (showAsImageCard && images.length > 0) {
     return (
-      <div className={`relative rounded-lg overflow-hidden group ${className}`}>
+      <div className={`relative rounded-lg overflow-hidden group ${className}`} style={style}>
         <div 
-          className={`${getAspectRatioClass()} w-full`}
+          className="w-full h-full"
           style={height ? { height } : {}}
         >
           <img
             src={images[0].src}
             alt={images[0].alt}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            style={{ minHeight: '100%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           

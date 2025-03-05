@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="text-3xl font-bold text-white mb-2">
               DG<span className="text-primary"> DEVELOPMENT</span>
             </div>
-            <p className="text-white/70">Konsultation inom teknisk projektledning, design och tillverkning.</p>
+            <p className="text-white/70">Konsultation inom teknisk projektledning, design och tillverkning</p>
           </div>
           
           <button 

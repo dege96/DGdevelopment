@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,16 +9,16 @@ const Produktfotografering = () => {
   // Sample product photography images
   const productImages = [
     { 
-      src: "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Product photography example 1" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Dokumentering/Inbyggnad Pumphus.png", 
+      alt: "Inbyggnad Pumphus" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1583209814683-c023dd293cc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Product photography example 2" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Dokumentering/Städsyst4 Ösikt.jpg", 
+      alt: "Städsystem översikt" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Product photography example 3" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Dokumentering/Utbyggn_Exempel.jpg", 
+      alt: "Utbyggnadsexempel" 
     },
   ];
 

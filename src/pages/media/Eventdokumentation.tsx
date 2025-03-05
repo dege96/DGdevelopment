@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,16 +9,16 @@ const Eventdokumentation = () => {
   // Sample event documentation images
   const eventImages = [
     { 
-      src: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Corporate event documentation" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Event_Studio/Studio-008.jpg", 
+      alt: "RaceArena Åre event" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Conference documentation" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Event_Studio/Studio-003.jpg", 
+      alt: "Studio fotografering" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Exhibition documentation" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Event_Studio/RaceArena Åre 3.jpg", 
+      alt: "IQX event" 
     },
   ];
 

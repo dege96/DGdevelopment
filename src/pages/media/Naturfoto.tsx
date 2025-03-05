@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,16 +9,45 @@ const Naturfoto = () => {
   // Sample nature photography images
   const natureImages = [
     { 
-      src: "https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Deer in mountain landscape" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/2022 Natur-5.jpg", 
+      alt: "Blommor med vattendroppar" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Close-up of orange poppies" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_003.jpg", 
+      alt: "Djur och natur" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80", 
-      alt: "Mountain landscape with sunrays" 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_016.jpg", 
+      alt: "Naturdetalj" 
+    },
+  ];
+
+  // Additional gallery images
+  const galleryImages = [
+    ...natureImages,
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_006.jpeg", 
+      alt: "Naturfotografi" 
+    },
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_007.jpeg", 
+      alt: "Naturfotografi" 
+    },
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/2022 Natur-5.jpg", 
+      alt: "Naturfotografi" 
+    },
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_024.jpg", 
+      alt: "Naturfotografi" 
+    },
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_003.jpg", 
+      alt: "Naturfotografi" 
+    },
+    { 
+      src: "/HEMSA DGD/Foto_Dokumentering/Djur_Natur/DjurNatur_004.jpg", 
+      alt: "Naturfotografi" 
     },
   ];
 
@@ -87,7 +115,7 @@ const Naturfoto = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Thumbnail images */}
-              {natureImages.concat(natureImages.slice(0, 6)).map((image, index) => (
+              {galleryImages.map((image, index) => (
                 <div 
                   key={index} 
                   className="aspect-square rounded-lg overflow-hidden animate-slideUp opacity-0"
