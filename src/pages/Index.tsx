@@ -5,7 +5,7 @@ import ProcessSteps from '@/components/ProcessSteps';
 import Footer from '@/components/Footer';
 import ImageCarousel from '@/components/ImageCarousel';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Palette, Cpu, Camera } from 'lucide-react';
+import { ArrowRight, Palette, Cpu, Printer, Wrench } from 'lucide-react';
 
 const ServiceCard = ({ title, description, icon, link, imageData }: { 
   title: string; 
@@ -51,19 +51,25 @@ const ServiceCard = ({ title, description, icon, link, imageData }: {
 const designImage = {
   src: "/HEMSA DGD/Formgivning/NIKE slutleverans MICA x4_.jpg",
   alt: "Design & Formgivning",
-  description: "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning."
+  description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering."
 };
 
 const technicalImage = {
   src: "/HEMSA DGD/CAD CAM/Plats Måttanpassat utekök CAD.jpg",
   alt: "Tekniska Lösningar",
-  description: "CAD/CAM & Teknisk Visualisering, Prototypframställning, Tillverkningsmetoder och mer."
+  description: "Systemutveckling & Automation, Elektronik & Styrsystem, Konstruktion & Tillverkningsunderlag."
 };
 
-const mediaImage = {
-  src: "/HEMSA DGD/Foto_Dokumentering/Event_Studio/Studio-015.jpg",
-  alt: "Media",
-  description: "Produktfotografering, Eventdokumentation och Naturfotogalleri."
+const prototypeImage = {
+  src: "/HEMSA DGD/Formgivning/3Dprint finishing closeup.jpg",
+  alt: "Prototyper & Specialtillverkning",
+  description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge."
+};
+
+const manufacturingImage = {
+  src: "/HEMSA DGD/Formgivning/Form_CF_Laminering-007.jpg",
+  alt: "Tillverkningsmetoder",
+  description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning."
 };
 
 const Index = () => {
@@ -87,24 +93,31 @@ const Index = () => {
   const services = [
     {
       title: "Design & Formgivning",
-      description: "Idé/problemlösning, Helhetsansvar för tillverkning, Samordning, installation & driftsättning.",
+      description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering.",
       icon: <Palette className="w-5 h-5 text-primary" />,
-      link: "/design-formgivning",
+      link: "/tjanster/design-formgivning",
       imageData: designImage
     },
     {
       title: "Tekniska Lösningar",
-      description: "CAD/CAM & Teknisk Visualisering, Prototypframställning, Tillverkningsmetoder och mer.",
+      description: "Systemutveckling & Automation, Elektronik & Styrsystem, Konstruktion & Tillverkningsunderlag.",
       icon: <Cpu className="w-5 h-5 text-primary" />,
-      link: "/tekniska-losningar",
+      link: "/tjanster/tekniska-losningar",
       imageData: technicalImage
     },
     {
-      title: "Media",
-      description: "Produktfotografering, Eventdokumentation och Naturfotogalleri.",
-      icon: <Camera className="w-5 h-5 text-primary" />,
-      link: "/media",
-      imageData: mediaImage
+      title: "Prototyper & Specialtillverkning",
+      description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge.",
+      icon: <Printer className="w-5 h-5 text-primary" />,
+      link: "/tjanster/prototyper",
+      imageData: prototypeImage
+    },
+    {
+      title: "Tillverkningsmetoder",
+      description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning.",
+      icon: <Wrench className="w-5 h-5 text-primary" />,
+      link: "/tjanster/tillverkningsmetoder",
+      imageData: manufacturingImage
     }
   ];
 
@@ -116,24 +129,33 @@ const Index = () => {
         
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <ImageCarousel 
-                images={[designImage]}
-                category="Design & Formgivning"
-                description={designImage.description}
-                showAllLink="/design-formgivning"
-                showAsImageCard={true}
-                className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
-              />
-              
-              <ImageCarousel 
-                images={[technicalImage]}
-                category="Tekniska Lösningar"
-                description={technicalImage.description}
-                showAllLink="/tekniska-losningar"
-                showAsImageCard={true}
-                className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
-              />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center animate-slideDown opacity-0">
+              Våra <span className="text-primary">Tjänster</span>
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {services.map((service, index) => (
+                <ImageCarousel 
+                  key={index}
+                  images={[service.imageData!]}
+                  category={service.title}
+                  description={service.description}
+                  showAllLink={service.link}
+                  showAsImageCard={true}
+                  className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
+                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                />
+              ))}
+            </div>
+            
+            <div className="text-center mt-12 animate-slideUp opacity-0" style={{ animationDelay: '0.6s' }}>
+              <Link 
+                to="/tjanster" 
+                className="inline-flex items-center glass hover:bg-white/10 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 group"
+              >
+                Utforska alla tjänster
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </Link>
             </div>
           </div>
         </section>

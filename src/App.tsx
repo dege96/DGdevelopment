@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Tjänster översikt
+import Tjanster from "./pages/Tjanster";
+
 // Design & Formgivning pages
 import DesignFormgivning from "./pages/DesignFormgivning";
 import TekniskDesign from "./pages/design/TekniskDesign";
@@ -40,6 +43,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           
+          {/* Tjänster översikt */}
+          <Route path="/tjanster" element={<Tjanster />} />
+          
           {/* Design & Formgivning routes */}
           <Route path="/design-formgivning" element={<DesignFormgivning />} />
           <Route path="/design-formgivning/teknisk-design" element={<TekniskDesign />} />
@@ -47,11 +53,36 @@ const App = () => (
           <Route path="/design-formgivning/formgivning" element={<Formgivning />} />
           <Route path="/design-formgivning/foto-dokumentering" element={<FotoDokumentering />} />
           
+          {/* Nya rutter för Design & Formgivning */}
+          <Route path="/tjanster/design-formgivning" element={<DesignFormgivning />} />
+          <Route path="/tjanster/design-formgivning/teknisk-design" element={<TekniskDesign />} />
+          <Route path="/tjanster/design-formgivning/cad-visualisering" element={<CadVisualisering />} />
+          <Route path="/tjanster/design-formgivning/formgivning" element={<Formgivning />} />
+          <Route path="/tjanster/design-formgivning/foto-dokumentering" element={<FotoDokumentering />} />
+          
           {/* Tekniska Lösningar routes */}
           <Route path="/tekniska-losningar" element={<TekniskaLosningar />} />
           <Route path="/tekniska-losningar/cad-cam" element={<CadCam />} />
           <Route path="/tekniska-losningar/prototyp" element={<Prototyp />} />
           <Route path="/tekniska-losningar/tillverkning" element={<Tillverkning />} />
+          
+          {/* Nya rutter för Tekniska Lösningar */}
+          <Route path="/tjanster/tekniska-losningar" element={<TekniskaLosningar />} />
+          <Route path="/tjanster/tekniska-losningar/systemutveckling" element={<CadCam />} />
+          <Route path="/tjanster/tekniska-losningar/elektronik" element={<Prototyp />} />
+          <Route path="/tjanster/tekniska-losningar/konstruktion" element={<Tillverkning />} />
+          
+          {/* Nya rutter för Prototyper & Specialtillverkning */}
+          <Route path="/tjanster/prototyper" element={<Prototyp />} />
+          <Route path="/tjanster/prototyper/prototypframstallning" element={<Prototyp />} />
+          <Route path="/tjanster/prototyper/3d-print-laser" element={<Prototyp />} />
+          <Route path="/tjanster/prototyper/modellbygge" element={<Prototyp />} />
+          
+          {/* Nya rutter för Tillverkningsmetoder */}
+          <Route path="/tjanster/tillverkningsmetoder" element={<Tillverkning />} />
+          <Route path="/tjanster/tillverkningsmetoder/cnc-laser" element={<Tillverkning />} />
+          <Route path="/tjanster/tillverkningsmetoder/formtillverkning" element={<Tillverkning />} />
+          <Route path="/tjanster/tillverkningsmetoder/laminering-gjutning" element={<Tillverkning />} />
           
           {/* Media routes */}
           <Route path="/media" element={<Media />} />

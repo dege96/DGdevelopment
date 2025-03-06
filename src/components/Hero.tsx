@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 declare global {
   interface Window {
@@ -82,11 +83,32 @@ const introAnimationStyles = `
   }
 `;
 
+// Bilder för karusellen - alla bilder från TranspBkg-mappen
+const demoImages = [
+  {
+    src: "/TranspBkg/Gecko-001.png",
+    alt: "Gecko design"
+  },
+  {
+    src: "/TranspBkg/kristall.png",
+    alt: "Kristall design"
+  },
+  {
+    src: "/TranspBkg/NIKEslutleverans.png",
+    alt: "NIKE slutleverans"
+  },
+  {
+    src: "/TranspBkg/Manasi Flaska Cap_fri.png",
+    alt: "Manasi Flaska Cap"
+  }
+];
+
 const Hero = () => {
   const [introComplete, setIntroComplete] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
   const [unicornLoaded, setUnicornLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Ladda Unicorn Studio-skriptet när komponenten monteras
   useEffect(() => {
@@ -142,6 +164,19 @@ const Hero = () => {
     };
   }, []);
 
+  // Automatisk bildväxling
+  useEffect(() => {
+    if (introComplete) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => 
+          prevIndex === demoImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 5000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [introComplete]);
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Intro Animation */}
@@ -183,56 +218,78 @@ const Hero = () => {
       {/* Extra gradient overlay för bättre läsbarhet - justerad opacitet */}
       <div className={`absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40 z-20 transition-opacity duration-700 ${introComplete ? 'opacity-100' : 'opacity-0'}`}></div>
       
-      <div className={`container relative z-30 px-4 sm:px-6 py-8 sm:py-12 mx-auto flex flex-col items-center justify-center text-center transition-opacity duration-700 ${introComplete ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="w-full max-w-3xl mx-auto">
-          {/* Logo och text container */}
-          <div className={`inline-block mb-4 sm:mb-6 staggered-item ${contentVisible ? 'visible delay-1' : ''}`}>
-            {/* Justera logotypens storlek för mobil */}
+      <div className={`container relative z-30 px-4 sm:px-6 py-8 sm:py-12 mx-auto flex flex-col transition-opacity duration-700 ${introComplete ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Vänster sida - Text innehåll */}
+          <div className="w-full md:w-1/2 flex flex-col items-start text-left mb-8 md:mb-0">
+            {/* Logo och text container */}
+            <div className={`mb-4 sm:mb-6 staggered-item ${contentVisible ? 'visible delay-1' : ''}`}>
+              {/* Logotyp kan läggas till här om det behövs */}
+            </div>
             
-
+            {/* Huvudrubrik med responsiv textstorlek */}
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 staggered-item ${contentVisible ? 'visible delay-2' : ''}`}>
+              Från <span 
+                className="text-transparent bg-clip-text animate-gradient"
+                style={{ 
+                  backgroundImage: 'linear-gradient(to right, #ebb834, #be6c32, #ffd5a4)',
+                  backgroundSize: '200% 100%'
+                }}
+              >vision</span>
+              <br className="md:hidden" /> till färdig <span 
+                className="text-transparent bg-clip-text animate-gradient"
+                style={{ 
+                  backgroundImage: 'linear-gradient(to right, #ffd5a4, #be6c32, #ebb834)',
+                  backgroundSize: '200% 100%'
+                }}
+              >produkt</span>
+            </h1>
+            
+            {/* Underrubrik med responsiv textstorlek och padding */}
+            <p className={`text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mb-8 sm:mb-10 staggered-item ${contentVisible ? 'visible delay-3' : ''}`}>
+              Konsultation inom teknisk projektledning samt design.
+              <br />
+              Från mindre uppdrag till omfattande system/projekt med helhetsansvar
+            </p>
+            
+            {/* Knapp med responsiv padding */}
+            <div className={`staggered-item ${contentVisible ? 'visible delay-4' : ''}`}>
+              <Link to="/tjanster" className="inline-flex items-center glass hover:bg-white/10 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 group">
+                Utforska
+                <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
+              </Link>
+            </div>
           </div>
           
-          {/* Huvudrubrik med responsiv textstorlek */}
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 staggered-item ${contentVisible ? 'visible delay-2' : ''}`}>
-            Från <span 
-              className="text-transparent bg-clip-text animate-gradient"
-              style={{ 
-                backgroundImage: 'linear-gradient(to right, #ebb834, #be6c32, #ffd5a4)',
-                backgroundSize: '200% 100%'
-              }}
-            >vision</span>
-            <br className="md:hidden" /> till färdig <span 
-              className="text-transparent bg-clip-text animate-gradient"
-              style={{ 
-                backgroundImage: 'linear-gradient(to right, #ffd5a4, #be6c32, #ebb834)',
-                backgroundSize: '200% 100%'
-              }}
-            >produkt</span>
-          </h1>
-          
-          {/* Underrubrik med responsiv textstorlek och padding */}
-          <p className={`text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 px-4 staggered-item ${contentVisible ? 'visible delay-3' : ''}`}>
-            Konsultation inom teknisk projektledning samt design.
-            <br />
-            Från mindre uppdrag till omfattande system/projekt med helhetsansvar
-          </p>
-          
-          {/* Knapp med responsiv padding */}
-          <div className={`staggered-item ${contentVisible ? 'visible delay-4' : ''}`}>
-            <a href="#explore" className="inline-flex items-center glass hover:bg-white/10 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 group">
-              Utforska
-              <svg className="ml-1 group-hover:translate-x-1 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
+          {/* Höger sida - Anpassad bildkarusell utan manuella kontroller */}
+          <div className={`w-full md:w-1/2 staggered-item relative ${contentVisible ? 'visible delay-3' : ''}`}>
+            <div className="relative w-full h-[300px] sm:h-[400px] flex items-center justify-center">
+              {/* Bildcontainer med transition */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                {demoImages.map((image, index) => (
+                  <div 
+                    key={index}
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
+                      index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                    }`}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
       <div className={`absolute bottom-10 w-full flex justify-center animate-pulse transition-opacity duration-700 ${introComplete ? 'opacity-100' : 'opacity-0'}`}>
-        <a href="#explore" className="text-white/50 hover:text-white transition-colors">
+        <Link to="/tjanster" className="text-white/50 hover:text-white transition-colors">
           <ArrowDown size={24} />
-        </a>
+        </Link>
       </div>
     </div>
   );
