@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProcessSteps from '@/components/ProcessSteps';
@@ -48,31 +48,114 @@ const ServiceCard = ({ title, description, icon, link, imageData }: {
   );
 };
 
+const prototypeImage = {
+  src: "/TranspBkg/Manasi Flaska Cap_fri2.png",
+  alt: "Prototyper & Specialtillverkning",
+  description: "Prototypframställning för koncept-test och visualisering, alternativt one-off behov"
+};
+
 const designImage = {
-  src: "/HEMSA DGD/Formgivning/NIKE slutleverans MICA x4_.jpg",
+  src: "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.png",
   alt: "Design & Formgivning",
-  description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering."
+  description: "Från idé till färdig design med fokus på funktion och estetik."
 };
 
 const technicalImage = {
-  src: "/HEMSA DGD/CAD CAM/Plats Måttanpassat utekök CAD.jpg",
+  src: "/bildspel Tekniska Lösningar/PNEU_VacBox Dubbel_Ejekt.png",
   alt: "Tekniska Lösningar",
-  description: "Systemutveckling & Automation, Elektronik & Styrsystem, Konstruktion & Tillverkningsunderlag."
-};
+  description: "Problemlösning och modifiering av nuläge, eller komplett nykonstruktion"
+} as const;
 
-const prototypeImage = {
-  src: "/HEMSA DGD/Formgivning/3Dprint finishing closeup.jpg",
-  alt: "Prototyper & Specialtillverkning",
-  description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge."
-};
-
-const manufacturingImage = {
-  src: "/HEMSA DGD/Formgivning/Form_CF_Laminering-007.jpg",
-  alt: "Tillverkningsmetoder",
-  description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning."
+const loadImage = (src: string): Promise<HTMLImageElement> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    
+    // Förhindra WebGL från att försöka rendera innan bilden är redo
+    img.crossOrigin = "anonymous";
+    
+    img.onload = () => {
+      console.log(`Successfully loaded image: ${src}`);
+      resolve(img);
+    };
+    
+    img.onerror = (error) => {
+      console.error(`Failed to load image: ${src}`, error);
+      reject(new Error(`Failed to load image: ${src}`));
+    };
+    
+    // Sätt src efter att event handlers är uppsatta
+    img.src = src;
+  });
 };
 
 const Index = () => {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadingErrors, setLoadingErrors] = useState<string[]>([]);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagesToLoad = [
+        { src: prototypeImage.src, name: 'Prototype' },
+        { src: designImage.src, name: 'Design' },
+        { src: technicalImage.src, name: 'Technical' }
+      ];
+
+      try {
+        // Vänta på att alla bilder ska laddas helt
+        const results = await Promise.allSettled(
+          imagesToLoad.map(img => loadImage(img.src))
+        );
+
+        const loadedImages = results
+          .filter((result): result is PromiseFulfilledResult<HTMLImageElement> => 
+            result.status === 'fulfilled'
+          )
+          .map(result => result.value);
+
+        const errors = results
+          .map((result, index) => 
+            result.status === 'rejected' ? imagesToLoad[index].name : null
+          )
+          .filter((name): name is string => name !== null);
+
+        // Spara referenserna till de laddade bilderna
+        imagesRef.current = loadedImages;
+
+        if (errors.length > 0) {
+          console.error('Failed to load images:', errors);
+          setLoadingErrors(errors);
+        } else {
+          console.log('All images loaded successfully');
+          setLoadingErrors([]);
+        }
+
+        // Sätt imagesLoaded till true endast när alla bilder är helt laddade
+        setImagesLoaded(true);
+
+      } catch (error) {
+        console.error('Error in image preloading:', error);
+        setImagesLoaded(false);
+      }
+    };
+
+    // Starta bildladdningen
+    setImagesLoaded(false);
+    preloadImages();
+
+    // Cleanup funktion
+    return () => {
+      imagesRef.current = [];
+    };
+  }, []);
+
+  // Visa loading state medan bilderna laddas
+  useEffect(() => {
+    if (!imagesLoaded) {
+      console.log('Images are still loading...');
+    }
+  }, [imagesLoaded]);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -92,6 +175,13 @@ const Index = () => {
 
   const services = [
     {
+      title: "Prototyper & Specialtillverkning",
+      description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge.",
+      icon: <Printer className="w-10 h-5 text-primary" />,
+      link: "/tjanster/prototyper",
+      imageData: prototypeImage
+    },
+    {
       title: "Design & Formgivning",
       description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering.",
       icon: <Palette className="w-5 h-5 text-primary" />,
@@ -104,20 +194,6 @@ const Index = () => {
       icon: <Cpu className="w-5 h-5 text-primary" />,
       link: "/tjanster/tekniska-losningar",
       imageData: technicalImage
-    },
-    {
-      title: "Prototyper & Specialtillverkning",
-      description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge.",
-      icon: <Printer className="w-5 h-5 text-primary" />,
-      link: "/tjanster/prototyper",
-      imageData: prototypeImage
-    },
-    {
-      title: "Tillverkningsmetoder",
-      description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning.",
-      icon: <Wrench className="w-5 h-5 text-primary" />,
-      link: "/tjanster/tillverkningsmetoder",
-      imageData: manufacturingImage
     }
   ];
 
@@ -142,8 +218,15 @@ const Index = () => {
                   description={service.description}
                   showAllLink={service.link}
                   showAsImageCard={true}
-                  className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
-                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                  className={`animate-slideUp opacity-0 h-[320px] md:h-[380px] ${
+                    !imagesLoaded ? 'bg-gray-900' : ''
+                  } ${
+                    service.title === "Tekniska Lösningar" ? 'md:col-span-2' : ''
+                  }`}
+                  style={{ 
+                    animationDelay: `${0.2 + index * 0.1}s`,
+                    visibility: imagesLoaded ? 'visible' : 'hidden'
+                  }}
                 />
               ))}
             </div>

@@ -27,7 +27,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   aspectRatio = "video",
   height,
   showAsImageCard = false,
-  actionText = "Lär dig mer",
+  actionText = "Se bilder",
   style
 }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -52,7 +52,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   // Render as a single image card with text overlay
   if (showAsImageCard && images.length > 0) {
     return (
-      <div className={`relative rounded-lg overflow-hidden group ${className}`} style={style}>
+      <Link 
+        to={showAllLink || '#'} 
+        className={`relative rounded-lg overflow-hidden group block ${className}`} 
+        style={{ ...style, backgroundColor: '#020202' }}
+      >
         <div 
           className="w-full h-full"
           style={height ? { height } : {}}
@@ -63,24 +67,23 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             style={{ minHeight: '100%' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div 
+            className="absolute inset-0" 
+            style={{ 
+              backgroundImage: 'linear-gradient(to top, rgb(2 2 2), rgb(2 2 2 / 20%) 50%, transparent)',
+            }} 
+          />
           
-          <div className="absolute bottom-0 left-0 p-5 w-full">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{category}</h3>
-            {description && (
-              <p className="text-white/80 text-sm md:text-base mb-4 max-w-md">{description}</p>
-            )}
-            {showAllLink && (
-              <Link 
-                to={showAllLink} 
-                className="px-4 py-2 bg-black/40 hover:bg-primary/80 text-white text-sm rounded-md transition-colors inline-block"
-              >
-                {actionText}
-              </Link>
-            )}
+          <div className="absolute bottom-6 left-0 w-full px-6">
+            <div className="backdrop-blur-[8px] bg-white/[0.04] rounded-xl p-4 text-center">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{category}</h3>
+              {description && (
+                <p className="text-white/90 text-sm md:text-base max-w-prose mx-auto">{description}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 

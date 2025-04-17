@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { Palette, Cpu, Printer, Wrench, ChevronRight } from 'lucide-react';
+import { Palette, Cpu, Printer, Wrench, ChevronRight, Camera } from 'lucide-react';
+import { serialize } from 'v8';
 
 // Tjänstekategorier med detaljerad information
 const serviceCategories = [
@@ -11,12 +12,16 @@ const serviceCategories = [
     title: "Design & Formgivning",
     icon: <Palette className="text-primary" size={28} />,
     description: "Från idé till färdig design med fokus på funktion och estetik.",
-    image: "/HEMSA DGD/Formgivning/NIKE slutleverans MICA x4_.jpg",
+    image: "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.png",
     link: "/tjanster/design-formgivning",
     services: [
-      "Teknisk design",
+      "Teknisk design, Konstruktionsunderlag",
       "CAD & Visualisering",
+      "Dekormålning (Digitaltryck eller handmålning)",
+      "Scenografi (Profilsystem och/eller unika artistiska objekt)",
+      "LED ljussättning (Statisk eller animerad)",
       "Formgivning",
+      "Formtillverkning", 
       "Foto & Dokumentering"
     ]
   },
@@ -24,57 +29,96 @@ const serviceCategories = [
     id: "tekniska-losningar",
     title: "Tekniska Lösningar",
     icon: <Cpu className="text-primary" size={28} />,
-    description: "Innovativa tekniska lösningar för komplexa utmaningar.",
-    image: "/HEMSA DGD/CAD CAM/Plats Måttanpassat utekök CAD.jpg",
+    description: "Problemlösning och modifiering av nuläge, eller komplett nykonstruktion",
+    image: "/bildspel Tekniska Lösningar/PNEU_VacBox Dubbel_Ejekt.png",
     link: "/tjanster/tekniska-losningar",
     services: [
-      "Systemutveckling & Automation",
-      "Elektronik & Styrsystem",
-      "Konstruktion & Tillverkningsunderlag"
+      "Styr & Regler (PLC, Pneumatik)",
+      "C++ programering (PLC)", 
+      "Apparatskåp (Std DIN-rail)",
+      "Konstruktion & Tillverkningsunderlag",
+      "CAD & Visualisering",
+      "Tillverkning (Mekanik)"
     ]
   },
   {
     id: "prototyper",
     title: "Prototyper & Specialtillverkning",
     icon: <Printer className="text-primary" size={28} />,
-    description: "Snabb och precis prototypframställning för att testa och visualisera koncept.",
-    image: "/HEMSA DGD/Formgivning/3Dprint finishing closeup.jpg",
+    description: "Prototypframställning för koncept-test och visualisering, alternativt one-off behov ",
+    image: "/TranspBkg/Manasi Flaska Cap_fri.png",
     link: "/tjanster/prototyper",
     services: [
-      "Prototypframställning",
-      "3D-printning & Lasergravering",
-      "Modellbygge"
+      "CAD design (Teknisk eller digital skulptering)",
+      "3D-modell (Print och/eller gjutning)",
+      "Formtillverkning",
+      "Lasergravering", 
+      "Klassiskt modellbygge (Mixed arts)"
     ]
   },
   {
-    id: "tillverkningsmetoder",
-    title: "Tillverkningsmetoder",
+    id: "foto-dokumentering",
+    title: "Foto & Dokumentering",
+    icon: <Camera className="text-primary" size={28} />,
+    description: "Vi bistår med fototjänster, på plats eller i egen studio.",
+    image: "/bildspel Foto_Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
+    link: "/tjanster/foto-dokumentering",
+    longDescription: "Efter att en systemlösning eller produkt har slutförts, så efterfrågas ofta även dokumenterad grafisk översikt, manualer eller konstruktionsunderlag mm.\n\nVi tar fram allt bild och textmaterial till tydliga och lättåtkomliga digitala eller tryckta format.\n\nEfter fotograferingen erbjuder vi professionell bildbehandling, retuschering, formatering och montering. Vi säkerställer att dina bilder får rätt färgjusteringar, beskärning och andra nödvändiga justeringar för att uppnå bästa möjliga resultat.\n\nVåra tjänster inkluderar även retuschering, borttagning av bakgrunder, skapande av bildkompositioner och anpassning av bilder för olika medier och användningsområden."
+  },
+  {
+    id: "tillverkning",
+    title: "Tillverkning",
     icon: <Wrench className="text-primary" size={28} />,
-    description: "Professionella tillverkningsmetoder för högkvalitativa resultat.",
-    image: "/HEMSA DGD/Formgivning/Form_CF_Laminering-007.jpg",
-    link: "/tjanster/tillverkningsmetoder",
+    description: 'Professionella metoder av "Mixed Arts" karaktär: Från ren Industriell teknisk, till traditionell frihandsskulptering och skalan däremellan.',
+    image: "/bildspel Tekniska Lösningar/Prod_VacLyft_Custom.png",
     services: [
-      "CNC-fräsning & Laserskärning",
-      "Formtillverkning",
-      "Vacuum-laminering & Formgjutning"
+      "CNC-fräsning",
+      "Laser & vattenskärning",
+      "Formtillverkning (Silikon, GF)",
+      "Vacuum-laminering & Formgjutning",
+      "Konstruktionsmaterial (Metaller, Trä, Epoxy, Betong, PUR m fl.)",
+      "Gjutning",
+      "Klassisk skulptering",
+      "Finsnickeri"
     ]
   }
 ];
 
 const ServiceCard = ({ category, isEven }: { category: typeof serviceCategories[0], isEven: boolean }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.offsetHeight);
+      }
+    };
+
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
   return (
-    <div className={`flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} gap-8 mb-16 animate-slideUp opacity-0`}>
+    <div 
+      id={category.id}
+      className={`flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} gap-8 mb-16 animate-slideUp opacity-0 scroll-mt-32`}
+    >
       {/* Bild */}
-      <div className="w-full md:w-1/2 h-[300px] rounded-xl overflow-hidden">
+      <div 
+        className="w-full md:w-1/2 h-[300px] rounded-xl overflow-hidden"
+        style={{ height: window.innerWidth >= 768 ? `${contentHeight}px` : '300px' }}
+      >
         <img 
           src={category.image} 
           alt={category.title} 
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+          className="w-full h-full min-h-full object-contain transition-transform duration-700 hover:scale-105 border-radius-xl"
         />
       </div>
       
       {/* Innehåll */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center">
+      <div ref={contentRef} className="w-full md:w-1/2 flex flex-col">
         <div className="flex items-center mb-4">
           <div className="bg-secondary/30 p-3 rounded-lg mr-4">
             {category.icon}
@@ -84,22 +128,30 @@ const ServiceCard = ({ category, isEven }: { category: typeof serviceCategories[
         
         <p className="text-white/70 mb-6">{category.description}</p>
         
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-white mb-3">Tjänster:</h3>
-          <ul className="space-y-2">
-            {category.services.map((service, index) => (
-              <li key={index} className="flex items-center text-white/80">
-                <span className="text-primary mr-2">•</span> {service}
-              </li>
+        {category.longDescription ? (
+          <div className="mb-6 text-white/80 space-y-4">
+            {category.longDescription.split('\n\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
             ))}
-          </ul>
-        </div>
+          </div>
+        ) : (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold text-white mb-3">Tjänster:</h3>
+            <ul className="space-y-2">
+              {category.services?.map((service, index) => (
+                <li key={index} className="flex items-center text-white/80">
+                  <span className="text-primary mr-2">•</span> {service}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         
         <Link 
           to={category.link} 
           className="inline-flex items-center glass hover:bg-white/10 text-white px-6 py-2 rounded-full transition-all duration-300 group self-start"
         >
-          Läs mer
+          Se bilder
           <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
         </Link>
       </div>
@@ -128,6 +180,28 @@ const Tjanster = () => {
     };
   }, []);
 
+  // Hantera hash-länkar
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    };
+
+    // Kör direkt vid sidladdning
+    handleHashChange();
+
+    // Lägg till event listener för hash-ändringar
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
@@ -142,26 +216,9 @@ const Tjanster = () => {
         </div>
       </div>
       
-      {/* Introduktion */}
-      <section className="py-12">
-        <div className="container mx-auto px-6">
-          <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Från vision till färdig produkt</h2>
-            <p className="text-white/80 mb-6">
-              Vi erbjuder ett brett utbud av tjänster som hjälper dig att ta dina idéer från koncept till färdig produkt. 
-              Vårt team har expertis inom flera områden och kan ge dig skräddarsydda lösningar anpassade till dina specifika behov och mål.
-            </p>
-            <p className="text-white/80">
-              Utforska våra tjänstekategorier nedan för att hitta den expertis du behöver. Oavsett om du behöver hjälp med design, 
-              tekniska lösningar, prototyper eller tillverkning, har vi kunskapen och erfarenheten för att hjälpa dig lyckas.
-            </p>
-          </div>
-        </div>
-      </section>
-      
       {/* Tjänstekategorier */}
-      <section className="py-12">
-        <div className="container mx-auto px-6">
+      <section>
+        <div className="container mx-auto">
           {serviceCategories.map((category, index) => (
             <ServiceCard 
               key={category.id} 

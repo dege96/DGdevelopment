@@ -1,43 +1,29 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
-// For placeholder images - replace with actual images later
-const placeholderUrls = [
-  'https://images.unsplash.com/photo-1581094794329-c8112a89f0a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1611329532992-0b7ba27d85fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1500534623283-312aebe2edc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-];
-
 type GalleryItem = {
   image: string;
-  title: string;
-  category: 'product' | 'nature';
+  title?: string;
+  description?: string;
 };
 
-const GallerySection = () => {
+interface GallerySectionProps {
+  images: string[];
+  title?: string;
+}
+
+const GallerySection: React.FC<GallerySectionProps> = ({ images, title = "Bildgalleri" }) => {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [activeCategory, setActiveCategory] = useState<'all' | 'product' | 'nature'>('all');
   
-  const gallery: GalleryItem[] = [
-    { image: placeholderUrls[0], title: "Produktfotografering", category: 'product' },
-    { image: placeholderUrls[1], title: "Eventfotografering", category: 'product' },
-    { image: placeholderUrls[2], title: "Naturlandskap", category: 'nature' },
-    { image: placeholderUrls[3], title: "Produktprototyp", category: 'product' },
-    { image: placeholderUrls[4], title: "Teknisk detalj", category: 'product' },
-    { image: placeholderUrls[5], title: "Naturdetalj", category: 'nature' },
-  ];
-  
-  const filteredGallery = activeCategory === 'all' 
-    ? gallery 
-    : gallery.filter(item => item.category === activeCategory);
+  // Konvertera bild-array till GalleryItem-objekt
+  const gallery: GalleryItem[] = images.map(image => ({
+    image,
+    title: image.split('/').pop()?.replace(/\.[^/.]+$/, "").replace(/_/g, " ") || "",
+  }));
   
   const openLightbox = (index: number) => {
-    setSelectedImage(filteredGallery[index]);
+    setSelectedImage(gallery[index]);
     setSelectedIndex(index);
   };
   
@@ -46,45 +32,40 @@ const GallerySection = () => {
   };
   
   const nextImage = () => {
-    const newIndex = (selectedIndex + 1) % filteredGallery.length;
-    setSelectedImage(filteredGallery[newIndex]);
+    const newIndex = (selectedIndex + 1) % gallery.length;
+    setSelectedImage(gallery[newIndex]);
     setSelectedIndex(newIndex);
   };
   
   const prevImage = () => {
-    const newIndex = selectedIndex === 0 ? filteredGallery.length - 1 : selectedIndex - 1;
-    setSelectedImage(filteredGallery[newIndex]);
+    const newIndex = selectedIndex === 0 ? gallery.length - 1 : selectedIndex - 1;
+    setSelectedImage(gallery[newIndex]);
     setSelectedIndex(newIndex);
   };
   
+  if (gallery.length === 0) {
+    return (
+      <section>
+        <div className="container mx-auto text-center text-white/70">
+          <p>Inga bilder att visa.</p>
+        </div>
+      </section>
+    );
+  }
+  
   return (
-    <section className="section-padding" id="galleri">
+    <section>
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Våra Arbeten</h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
+          <h2 className="heading-lg mb-6">{title}</h2>
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
         
-        <div className="flex justify-center mb-12 animate-slideDown opacity-0" style={{ animationDelay: '0.6s' }}>
-          <div className="flex space-x-4 glass rounded-full p-1">
-            {['all', 'product', 'nature'].map((category) => (
-              <button
-                key={category}
-                className={`px-6 py-2 rounded-full transition-colors ${activeCategory === category ? 'bg-primary text-white' : 'text-white/70 hover:text-white'}`}
-                onClick={() => setActiveCategory(category as 'all' | 'product' | 'nature')}
-              >
-                {category === 'all' ? 'Alla' : category === 'product' ? 'PRODUKT & EVENT' : 'NATUR'}
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGallery.map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {gallery.map((item, index) => (
             <div 
               key={index}
-              className="group relative overflow-hidden rounded-xl animate-slideUp opacity-0" 
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              className="group relative overflow-hidden rounded-xl cursor-pointer hover:shadow-lg transition-shadow duration-300" 
               onClick={() => openLightbox(index)}
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -96,10 +77,7 @@ const GallerySection = () => {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="text-white text-lg font-medium">{item.title}</h3>
-                <p className="text-white/70 text-sm">
-                  {item.category === 'product' ? 'PRODUKT & EVENT' : 'NATUR'}
-                </p>
+                {item.title && <h3 className="text-white text-lg font-medium">{item.title}</h3>}
               </div>
             </div>
           ))}
@@ -129,12 +107,14 @@ const GallerySection = () => {
               alt={selectedImage.title}
               className="max-w-full max-h-[80vh] object-contain"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-4">
-              <h3 className="text-white text-lg font-medium">{selectedImage.title}</h3>
-              <p className="text-white/70 text-sm">
-                {selectedImage.category === 'product' ? 'PRODUKT & EVENT' : 'NATUR'}
-              </p>
-            </div>
+            {selectedImage.title && (
+              <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-4">
+                <h3 className="text-white text-lg font-medium">{selectedImage.title}</h3>
+                {selectedImage.description && (
+                  <p className="text-white/70 text-sm">{selectedImage.description}</p>
+                )}
+              </div>
+            )}
           </div>
           
           <button 

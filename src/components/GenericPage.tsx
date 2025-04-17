@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export type SectionCardProps = {
@@ -22,10 +22,10 @@ export const SectionCard = ({ id, title, icon, description, link }: SectionCardP
       <p className="text-white/70 mb-6">{description}</p>
       <Link
         to={link}
-        className="flex items-center text-primary hover:text-primary/80 transition-colors group"
+        className="inline-flex items-center glass hover:bg-white/10 text-white px-6 py-2 rounded-full transition-all duration-300 group self-start"
       >
-        Läs mer
-        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+        Se bilder
+        <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
       </Link>
     </div>
   );

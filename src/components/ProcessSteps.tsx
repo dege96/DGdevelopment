@@ -30,7 +30,7 @@ const ProcessSteps = () => {
     <section className="section-padding" id="process">
       <div className="container mx-auto">
         <div className="mb-16 text-center">
-          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Process</h2>
+          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Hur vi jobbar</h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
         </div>
         

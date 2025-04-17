@@ -1,3 +1,60 @@
+# Design Haven Projects
+
+## Teknologier
+- **React** med **TypeScript**
+- **Vite** som byggverktyg
+- **Tailwind CSS** för styling
+- **Shadcn/ui** för UI-komponenter
+- **React Router** för routing
+- **React Query** för datahantering
+- **Lucide React** för ikoner
+
+## Kommandon
+```bash
+# Utveckling
+npm run dev         # Starta utvecklingsserver
+
+# Bygge
+npm run build       # Bygga för produktion
+npm run build:dev   # Bygga för utveckling
+
+# Övrigt
+npm run preview     # Förhandsgranska byggd version
+npm run lint        # Kör linter
+```
+
+## Komponenter
+
+### Layout
+- `Navbar`: Huvudnavigering med responsiv meny och dropdown
+- `Footer`: Sidfot med kontaktinformation och länkar
+- `Hero`: Landningssida med animerad intro och bildkarusell
+
+### UI-komponenter
+- `ImageCarousel`: Bildvisare med stöd för karusell och bildkort
+- `ProcessSteps`: Visar projektprocessen i steg
+- `ServicesSection`: Visar tjänstekategorier med ikoner
+
+### Tjänstesidor
+- `Design & Formgivning`: CAD, visualisering, formgivning
+- `Tekniska Lösningar`: System, automation, konstruktion
+- `Prototyper`: 3D-printing, modellbygge
+- `Tillverkningsmetoder`: CNC, formtillverkning, gjutning
+
+### Media
+- `Produktfotografering`: Produktbilder och dokumentation
+- `Eventdokumentation`: Event- och processfotografering
+- `Naturfoto`: Naturbilder och miljödokumentation
+
+## Projektstruktur
+```
+src/
+├── components/     # Återanvändbara komponenter
+├── pages/         # Sidkomponenter
+├── lib/           # Hjälpfunktioner
+└── styles/        # Global styling
+```
+
 # Welcome to your Lovable project
 
 ## Project info
