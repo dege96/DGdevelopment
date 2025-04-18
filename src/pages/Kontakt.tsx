@@ -60,8 +60,8 @@ const Kontakt = () => {
                     </div>
                     <div>
                       <h3 className="text-white font-medium mb-1">E-post</h3>
-                      <a href="mailto:info@dgd.solutions" className="text-white/70 hover:text-primary transition-colors">
-                        info@dgd.solutions
+                      <a href="mailto:johan@dgd.solutions" className="text-white/70 hover:text-primary transition-colors">
+                        johan@dgd.solutions
                       </a>
                     </div>
                   </div>
@@ -72,8 +72,8 @@ const Kontakt = () => {
                     </div>
                     <div>
                       <h3 className="text-white font-medium mb-1">Telefon</h3>
-                      <a href="tel:+4612345678" className="text-white/70 hover:text-primary transition-colors">
-                        +46 (0) 12 345 678
+                      <a href="tel:+46707189877" className="text-white/70 hover:text-primary transition-colors">
+                        070 718 98 77
                       </a>
                     </div>
                   </div>
@@ -86,9 +86,9 @@ const Kontakt = () => {
                       <h3 className="text-white font-medium mb-1">Adress</h3>
                       <p className="text-white/70">
                         DG Development<br />
-                        Exempelgatan 123<br />
-                        123 45 Stockholm<br />
-                        Sverige
+                        Vetevägen 22 <br />
+                        187 69, Täby<br />
+                        Stockholm, Sverige
                       </p>
                     </div>
                   </div>
@@ -98,7 +98,6 @@ const Kontakt = () => {
                   <h3 className="text-white font-medium mb-2">Arbetstider</h3>
                   <p className="text-white/70">
                     Måndag - Fredag: 08:00 - 17:00<br />
-                    Helger: Stängt
                   </p>
                 </div>
               </div>

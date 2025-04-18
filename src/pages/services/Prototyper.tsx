@@ -11,20 +11,20 @@ const Prototyper = () => {
   useEffect(() => {
     // Samla alla bilder från bildspel Prototyper_Specialtillv-mappen
     const images = [
-      "/bildspel Prototyper_Specialtillv/Prod_Custom Cap.png",
-      "/bildspel Prototyper_Specialtillv/Prod_FineConcrete tray.png",
-      "/bildspel Prototyper_Specialtillv/Prod_Nike MICAx4.png",
-      "/bildspel Prototyper_Specialtillv/Prod_Trapp platsbyggd-3.jpg",
-      "/bildspel Prototyper_Specialtillv/Snickeri_BarHurts.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_Nike cold metal copper.png",
-      "/bildspel Prototyper_Specialtillv/Snickeri_Utekök.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_Trapp platsbyggd-2.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_Trapp platsbyggd-1.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_VacLyft Custom.jpg",
-      "/bildspel Prototyper_Specialtillv/Snickeri_Attefall.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_Gimbal2.jpg",
-      "/bildspel Prototyper_Specialtillv/Prod_VacStyrning Custom 2.jpg",
-      "/bildspel Prototyper_Specialtillv/Snickeri_Frigga.jpg"
+      "/bildspel_Prototyper_Specialtillv/Prod_Custom Cap.png",
+      "/bildspel_Prototyper_Specialtillv/Prod_FineConcrete tray.png",
+      "/bildspel_Prototyper_Specialtillv/Prod_Nike MICAx4.png",
+      "/bildspel_Prototyper_Specialtillv/Prod_Trapp platsbyggd-3.jpg",
+      "/bildspel_Prototyper_Specialtillv/Snickeri_BarHurts.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_Nike cold metal copper.png",
+      "/bildspel_Prototyper_Specialtillv/Snickeri_Utekok.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_Trapp platsbyggd-2.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_Trapp platsbyggd-1.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_VacLyft Custom.jpg",
+      "/bildspel_Prototyper_Specialtillv/Snickeri_Attefall.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_Gimbal2.jpg",
+      "/bildspel_Prototyper_Specialtillv/Prod_VacStyrning Custom 2.jpg",
+      "/bildspel_Prototyper_Specialtillv/Snickeri_Frigga.jpg"
     ];
     
     setGalleryImages(images);

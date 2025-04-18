@@ -12,7 +12,7 @@ const serviceCategories = [
     title: "Design & Formgivning",
     icon: <Palette className="text-primary" size={28} />,
     description: "Från idé till färdig design med fokus på funktion och estetik.",
-    image: "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.png",
+    image: "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.png",
     link: "/tjanster/design-formgivning",
     services: [
       "Teknisk design, Konstruktionsunderlag",
@@ -30,7 +30,7 @@ const serviceCategories = [
     title: "Tekniska Lösningar",
     icon: <Cpu className="text-primary" size={28} />,
     description: "Problemlösning och modifiering av nuläge, eller komplett nykonstruktion",
-    image: "/bildspel Tekniska Lösningar/PNEU_VacBox Dubbel_Ejekt.png",
+    image: "/bildspel_Tekniska_Losningar/PNEU_VacBox Dubbel_Ejekt.png",
     link: "/tjanster/tekniska-losningar",
     services: [
       "Styr & Regler (PLC, Pneumatik)",
@@ -61,7 +61,7 @@ const serviceCategories = [
     title: "Foto & Dokumentering",
     icon: <Camera className="text-primary" size={28} />,
     description: "Vi bistår med fototjänster, på plats eller i egen studio.",
-    image: "/bildspel Foto_Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
+    image: "/bildspel_Foto_Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
     link: "/tjanster/foto-dokumentering",
     longDescription: "Efter att en systemlösning eller produkt har slutförts, så efterfrågas ofta även dokumenterad grafisk översikt, manualer eller konstruktionsunderlag mm.\n\nVi tar fram allt bild och textmaterial till tydliga och lättåtkomliga digitala eller tryckta format.\n\nEfter fotograferingen erbjuder vi professionell bildbehandling, retuschering, formatering och montering. Vi säkerställer att dina bilder får rätt färgjusteringar, beskärning och andra nödvändiga justeringar för att uppnå bästa möjliga resultat.\n\nVåra tjänster inkluderar även retuschering, borttagning av bakgrunder, skapande av bildkompositioner och anpassning av bilder för olika medier och användningsområden."
   },
@@ -70,7 +70,7 @@ const serviceCategories = [
     title: "Tillverkning",
     icon: <Wrench className="text-primary" size={28} />,
     description: 'Professionella metoder av "Mixed Arts" karaktär: Från ren Industriell teknisk, till traditionell frihandsskulptering och skalan däremellan.',
-    image: "/bildspel Tekniska Lösningar/Prod_VacLyft_Custom.png",
+    image: "/bildspel_Tekniska_Losningar/Prod_VacLyft_Custom.png",
     services: [
       "CNC-fräsning",
       "Laser & vattenskärning",
@@ -147,13 +147,15 @@ const ServiceCard = ({ category, isEven }: { category: typeof serviceCategories[
           </div>
         )}
         
-        <Link 
-          to={category.link} 
-          className="inline-flex items-center glass hover:bg-white/10 text-white px-6 py-2 rounded-full transition-all duration-300 group self-start"
-        >
-          Se bilder
-          <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
-        </Link>
+        {category.id !== "tillverkning" && (
+          <Link 
+            to={category.link} 
+            className="inline-flex items-center glass hover:bg-white/10 text-white px-6 py-2 rounded-full transition-all duration-300 group self-start"
+          >
+            Se bilder
+            <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
+          </Link>
+        )}
       </div>
     </div>
   );

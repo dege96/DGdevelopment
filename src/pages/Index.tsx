@@ -55,13 +55,13 @@ const prototypeImage = {
 };
 
 const designImage = {
-  src: "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.png",
+  src: "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.png",
   alt: "Design & Formgivning",
   description: "Från idé till färdig design med fokus på funktion och estetik."
 };
 
 const technicalImage = {
-  src: "/bildspel Tekniska Lösningar/PNEU_VacBox Dubbel_Ejekt.png",
+  src: "/bildspel_Tekniska_Losningar/PNEU_VacBox Dubbel_Ejekt.png",
   alt: "Tekniska Lösningar",
   description: "Problemlösning och modifiering av nuläge, eller komplett nykonstruktion"
 } as const;

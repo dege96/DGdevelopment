@@ -7,32 +7,34 @@ import { Link } from 'react-router-dom';
 
 const FotoDokumentering = () => {
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [selectedGallery, setSelectedGallery] = useState<'Foto' | 'Dokumentering'>('Dokumentering');
   
   useEffect(() => {
-    // Samla alla bilder från bildspel Foto_Dokumentering-mappen
-    const images = [
-      "/bildspel Foto_Dokumentering/Schema_Motorstyrn _500W.jpg",
-      "/bildspel Foto_Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
-      "/bildspel Foto_Dokumentering/Schema_Pneumatik.jpg",
-      "/bildspel Foto_Dokumentering/Prod_Studio-008.jpg",
-      "/bildspel Foto_Dokumentering/Prod_Studio-013.jpg",
-      "/bildspel Foto_Dokumentering/Schema_ManöverBox.jpg",
-      "/bildspel Foto_Dokumentering/Event_RaceArena Åre 4.jpg",
-      "/bildspel Foto_Dokumentering/Prod_Studio-011.jpg",
-      "/bildspel Foto_Dokumentering/Doc_Fläktsyst Princip Ösikt.jpg",
-      "/bildspel Foto_Dokumentering/Ritn_Planritning villa.jpg",
-      "/bildspel Foto_Dokumentering/Ritn_Planlösning fabrik.png",
-      "/bildspel Foto_Dokumentering/Event_RaceArena Åre 3.jpg",
-      "/bildspel Foto_Dokumentering/Doc_Fläktsyst PLC logik.jpg",
-      "/bildspel Foto_Dokumentering/Doc_Städsyst.jpg",
-      "/bildspel Foto_Dokumentering/Event_RaceArena Åre 7.jpg",
-      "/bildspel Foto_Dokumentering/Ritn_Utbyggn01.jpg"
+    // Bilder för Dokumentering
+    const dokumenteringImages = [
+      "/bildspel_Foto_Dokumentering/Dokumentering/Schema_Pneumatik.jpg", 
+      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Stadsyst.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Schema_ManoverBox.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Flaaktsyst PLC logik.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Flaaktsyst Princip Ösikt.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Ritn_Planritning villa.jpg"
     ];
-    
-    // Filtrera bort PDF-filer
-    const filteredImages = images.filter(img => !img.endsWith('.pdf'));
-    setGalleryImages(filteredImages);
-  }, []);
+
+    // Bilder för Foto
+    const fotoImages = [
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 7.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 4.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 3.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-011.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-013.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-008.jpg"
+    ];
+
+    // Välj bilder baserat på valt galleri
+    const images = selectedGallery === 'Dokumentering' ? dokumenteringImages : fotoImages;
+    setGalleryImages(images);
+  }, [selectedGallery]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,11 +51,27 @@ const FotoDokumentering = () => {
             Våra Tjänster
           </Link>
           
+          {/* Välj galleri */}
+          <div className="flex justify-center mb-4">
+            <button 
+              className={`px-4 py-2 mx-2 border rounded-lg shadow-sm ${selectedGallery === 'Dokumentering' ? 'bg-primary text-white border-primary' : 'bg-gray-800 text-gray-300 border-gray-700'} hover:bg-primary hover:text-white transition-colors opacity-80 hover:opacity-100`} 
+              onClick={() => setSelectedGallery('Dokumentering')}
+            >
+              Dokumentering
+            </button>
+            <button 
+              className={`px-4 py-2 mx-2 border rounded-lg shadow-sm ${selectedGallery === 'Foto' ? 'bg-primary text-white border-primary' : 'bg-gray-800 text-gray-300 border-gray-700'} hover:bg-primary hover:text-white transition-colors opacity-80 hover:opacity-100`} 
+              onClick={() => setSelectedGallery('Foto')}
+            >
+              Foto
+            </button>
+          </div>
+          
           {/* Bildgalleri */}
           {galleryImages.length > 0 && (
             <GallerySection 
               images={galleryImages} 
-              title="Foto & Dokumentering" 
+              title={selectedGallery} 
             />
           )}
         </div>

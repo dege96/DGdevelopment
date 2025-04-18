@@ -11,21 +11,21 @@ const TekniskaLosningar = () => {
   useEffect(() => {
     // Samla alla bilder från bildspel Tekniska Lösningar-mappen
     const images = [
-      "/bildspel Tekniska Lösningar/Prod_VacLyft_Custom.png",
-      "/bildspel Tekniska Lösningar/PNEU_VacBox Dubbel_Ejekt.png",
-      "/bildspel Tekniska Lösningar/VACLYFT.png",
-      "/bildspel Tekniska Lösningar/Prod_Robot EOA tool_CAD.jpg",
-      "/bildspel Tekniska Lösningar/Prod_VacLyft n UI.jpeg",
-      "/bildspel Tekniska Lösningar/Prod_TrummaBig-002.jpg",
-      "/bildspel Tekniska Lösningar/Prod_Opto Controller.jpg",
-      "/bildspel Tekniska Lösningar/Prod_LEDwall3 expl.jpeg",
-      "/bildspel Tekniska Lösningar/Prod_VacLyft Ctrl.jpg",
-      "/bildspel Tekniska Lösningar/Prod_LEDwall1 front.PNG",
-      "/bildspel Tekniska Lösningar/Prod_LEDwall2 back.PNG",
-      "/bildspel Tekniska Lösningar/Prod_Robot EOA tool_foto.jpeg",
-      "/bildspel Tekniska Lösningar/Prod_TrummaBig-003.jpg",
-      "/bildspel Tekniska Lösningar/Prod_TrummaBig-001.jpg",
-      "/bildspel Tekniska Lösningar/Prod_TrummaBig-007.jpg"
+      "/bildspel_Tekniska_Losningar/Prod_VacLyft_Custom.png",
+      "/bildspel_Tekniska_Losningar/PNEU_VacBox Dubbel_Ejekt.png",
+      "/bildspel_Tekniska_Losningar/VACLYFT.png",
+      "/bildspel_Tekniska_Losningar/Prod_Robot EOA tool_CAD.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_VacLyft n UI.jpeg",
+      "/bildspel_Tekniska_Losningar/Prod_TrummaBig-002.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_Opto Controller.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_LEDwall3 expl.jpeg",
+      "/bildspel_Tekniska_Losningar/Prod_VacLyft Ctrl.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_LEDwall1 front.PNG",
+      "/bildspel_Tekniska_Losningar/Prod_LEDwall2 back.PNG",
+      "/bildspel_Tekniska_Losningar/Prod_Robot EOA tool_foto.jpeg",
+      "/bildspel_Tekniska_Losningar/Prod_TrummaBig-003.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_TrummaBig-001.jpg",
+      "/bildspel_Tekniska_Losningar/Prod_TrummaBig-007.jpg"
     ];
     
     // Filtrera bort videofiler

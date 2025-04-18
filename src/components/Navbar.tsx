@@ -15,7 +15,7 @@ import {
   Zap, 
   Settings
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,6 +25,7 @@ const Navbar = () => {
   const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,6 +141,23 @@ const Navbar = () => {
     ));
   };
 
+  const handleServiceClick = (path: string) => {
+    if (location.pathname === '/tjanster') {
+      // Om vi redan är på Tjanster-sidan, scrolla till sektionen
+      const hash = path.split('#')[1];
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Uppdatera URL utan att ladda om sidan
+        window.history.pushState(null, '', path);
+      }
+    } else {
+      // Om vi är på en annan sida, navigera till Tjanster-sidan med hash
+      window.location.href = path;
+    }
+    closeMobileMenu();
+  };
+
   return (
     <nav
       ref={navRef}
@@ -238,6 +256,10 @@ const Navbar = () => {
                   <Link 
                     to={category.path}
                     className="flex items-center text-white hover:text-primary transition-colors group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleServiceClick(category.path);
+                    }}
                   >
                     <div className="bg-secondary/30 p-2 rounded-lg mr-3 group-hover:bg-primary/20 transition-colors">
                       {category.icon}
@@ -258,6 +280,10 @@ const Navbar = () => {
                   <Link 
                     to={category.path}
                     className="flex items-center text-white hover:text-primary transition-colors group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleServiceClick(category.path);
+                    }}
                   >
                     <div className="bg-secondary/30 p-2 rounded-lg mr-3 group-hover:bg-primary/20 transition-colors">
                       {category.icon}
@@ -278,7 +304,7 @@ const Navbar = () => {
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        <div className="flex justify-end p-6">
+        <div className="flex justify-end p-6 bg-background">
           <button 
             onClick={() => setMobileMenuOpen(false)}
             className="text-white/80 hover:text-primary transition-colors"
@@ -287,7 +313,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="px-6 py-8">
+        <div className="px-6 py-8 bg-background">
           <div className="space-y-8">
             {/* Kreativa Tjänster */}
             <div>
@@ -298,7 +324,10 @@ const Navbar = () => {
                     <Link 
                       to={category.path}
                       className="flex items-center text-white hover:text-primary transition-colors group"
-                      onClick={closeMobileMenu}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleServiceClick(category.path);
+                      }}
                     >
                       <div className="bg-secondary/30 p-2 rounded-lg mr-3 group-hover:bg-primary/20 transition-colors">
                         {category.icon}
@@ -319,7 +348,10 @@ const Navbar = () => {
                     <Link 
                       to={category.path}
                       className="flex items-center text-white hover:text-primary transition-colors group"
-                      onClick={closeMobileMenu}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleServiceClick(category.path);
+                      }}
                     >
                       <div className="bg-secondary/30 p-2 rounded-lg mr-3 group-hover:bg-primary/20 transition-colors">
                         {category.icon}

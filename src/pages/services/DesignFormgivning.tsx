@@ -11,18 +11,18 @@ const DesignFormgivning = () => {
   useEffect(() => {
     // Samla alla bilder från bildspel Design Formgivning-mappen
     const images = [
-      "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.png",
-      "/bildspel Design Formgivning/Form_ChessHorse.png",
-      "/bildspel Design Formgivning/Form_Spel Chess.jpg",
-      "/bildspel Design Formgivning/Form_Betong_Gjutning.jpg",
-      "/bildspel Design Formgivning/Scenografi_Logo UV paint REAL2.jpeg",
-      "/bildspel Design Formgivning/Scenografi_Logo UV paint _RENDER.jpg",
-      "/bildspel Design Formgivning/Form_Vac_Laminering2.jpg",
-      "/bildspel Design Formgivning/Form_Vac_Laminering1.jpg",
-      "/bildspel Design Formgivning/Scenografi_Coasters UV paint.jpg",
-      "/bildspel Design Formgivning/Hantv_Träform TVstativ.png",
-      "/bildspel Design Formgivning/Scenografi_Figures UV paint.jpg",
-      "/bildspel Design Formgivning/Scenografi_Logo UV paint REAL.jpeg"
+      "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.png",
+      "/bildspel_Design_Formgivning/Form_ChessHorse.png",
+      "/bildspel_Design_Formgivning/Form_Spel Chess.jpg",
+      "/bildspel_Design_Formgivning/Form_Betong_Gjutning.jpg",
+      "/bildspel_Design_Formgivning/Scenografi_Logo UV paint REAL2.jpeg",
+      "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.jpg",
+      "/bildspel_Design_Formgivning/Form_Vac_Laminering2.jpg",
+      "/bildspel_Design_Formgivning/Form_Vac_Laminering1.jpg",
+      "/bildspel_Design_Formgivning/Scenografi_Coasters UV paint.jpg",
+      "/bildspel_Design_Formgivning/Hantv_Traform TVstativ.png",
+      "/bildspel_Design_Formgivning/Scenografi_Figures UV paint.jpg",
+      "/bildspel_Design_Formgivning/Scenografi_Logo UV paint REAL.jpeg"
     ];
     
     setGalleryImages(images);
