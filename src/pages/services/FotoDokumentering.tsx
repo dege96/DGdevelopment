@@ -14,18 +14,18 @@ const FotoDokumentering = () => {
     const dokumenteringImages = [
       "/bildspel_Foto_Dokumentering/Dokumentering/Schema_Pneumatik.jpg", 
       "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Stadsyst.jpg",
-      "/bildspel_Foto_Dokumentering/Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
       "/bildspel_Foto_Dokumentering/Dokumentering/Schema_ManoverBox.jpg",
-      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Flaaktsyst PLC logik.jpg",
-      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Flaaktsyst Princip Ösikt.jpg",
-      "/bildspel_Foto_Dokumentering/Dokumentering/Ritn_Planritning villa.jpg"
+      "/bildspel_Foto_Dokumentering/Dokumentering/Doc_Flaktsyst PLC logik.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Schema_Motorstyrn 1500W.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Ritn_Planritning villa.jpg",
+      "/bildspel_Foto_Dokumentering/Dokumentering/Ritn_Utbyggn01.jpg"
     ];
 
     // Bilder för Foto
     const fotoImages = [
-      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 7.jpg",
-      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 4.jpg",
-      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Åre 3.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Are 7.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Are 4.jpg",
+      "/bildspel_Foto_Dokumentering/Foto/Event_RaceArena Are 3.jpg",
       "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-011.jpg",
       "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-013.jpg",
       "/bildspel_Foto_Dokumentering/Foto/Prod_Studio-008.jpg"
