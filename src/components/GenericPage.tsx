@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from '@/components/SEO';
 
 export type SectionCardProps = {
   id: string;
@@ -38,6 +39,10 @@ export type GenericPageProps = {
   sections: SectionCardProps[];
   gridCols?: 2 | 3;
   paddingStyle?: 'pb-16';
+  seoTitle?: string;
+  seoDescription?: string;
+  seoImage?: string;
+  seoKeywords?: string;
 };
 
 const GenericPage = ({ 
@@ -46,7 +51,11 @@ const GenericPage = ({
   description, 
   sections, 
   gridCols = 3,
-  paddingStyle = 'pb-16'
+  paddingStyle = 'pb-16',
+  seoTitle,
+  seoDescription,
+  seoImage,
+  seoKeywords
 }: GenericPageProps) => {
   // Animation observer
   useEffect(() => {
@@ -70,6 +79,12 @@ const GenericPage = ({
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO 
+        title={seoTitle || title} 
+        description={seoDescription || subtitle} 
+        image={seoImage}
+        keywords={seoKeywords} 
+      />
       <Navbar />
       
       {/* Page Header */}

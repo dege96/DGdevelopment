@@ -1,0 +1,52 @@
+[
+  {
+    "scores": {
+      "url": "http://localhost:8080/",
+      "performance": 55.00000000000001,
+      "accessibility": 94,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "reportPath": "E:\\02 Programmering\\02 Websites\\DG Development\\design-haven-projects\\lighthouse-reports\\2025-04-22-home.html"
+  },
+  {
+    "scores": {
+      "url": "http://localhost:8080/tjanster",
+      "performance": 0,
+      "accessibility": 93,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "reportPath": "E:\\02 Programmering\\02 Websites\\DG Development\\design-haven-projects\\lighthouse-reports\\2025-04-22-tjanster.html"
+  },
+  {
+    "scores": {
+      "url": "http://localhost:8080/tjanster/design-formgivning",
+      "performance": 32,
+      "accessibility": 94,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "reportPath": "E:\\02 Programmering\\02 Websites\\DG Development\\design-haven-projects\\lighthouse-reports\\2025-04-22-tjanster-design-formgivning.html"
+  },
+  {
+    "scores": {
+      "url": "http://localhost:8080/om-oss",
+      "performance": 55.00000000000001,
+      "accessibility": 92,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "reportPath": "E:\\02 Programmering\\02 Websites\\DG Development\\design-haven-projects\\lighthouse-reports\\2025-04-22-om-oss.html"
+  },
+  {
+    "scores": {
+      "url": "http://localhost:8080/kontakt",
+      "performance": 55.00000000000001,
+      "accessibility": 88,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "reportPath": "E:\\02 Programmering\\02 Websites\\DG Development\\design-haven-projects\\lighthouse-reports\\2025-04-22-kontakt.html"
+  }
+]

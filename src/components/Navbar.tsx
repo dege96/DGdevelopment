@@ -107,7 +107,7 @@ const Navbar = () => {
       icon: <Zap className="w-5 h-5 text-primary" />
     },
     {
-      title: "Tillverkning",
+      title: "Tillverkningsmetoder",
       path: "/tjanster#tillverkning",
       icon: <Wrench className="w-5 h-5 text-primary" />
     },
@@ -175,7 +175,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-bold text-white animate-fadeIn hover:scale-105 transition-transform duration-300">
             <img 
-              src="/HEMSA DGD/LOGO/Logo Ej Text Opak/DGD 2310.png"
+              src="/svg_logo.svg"
               alt="logotype"
               className="h-10 md:h-12 w-auto"
             />

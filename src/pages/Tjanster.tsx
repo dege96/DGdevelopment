@@ -12,7 +12,7 @@ const serviceCategories = [
     title: "Design & Formgivning",
     icon: <Palette className="text-primary" size={28} />,
     description: "Från idé till färdig design med fokus på funktion och estetik.",
-    image: "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.png",
+    image: "/bildspel_Design_Formgivning/Scenografi_Logo UV_paint _RENDER.jpg",
     link: "/tjanster/design-formgivning",
     services: [
       "Teknisk design, Konstruktionsunderlag",
@@ -61,13 +61,13 @@ const serviceCategories = [
     title: "Foto & Dokumentering",
     icon: <Camera className="text-primary" size={28} />,
     description: "Vi bistår med fototjänster, på plats eller i egen studio.",
-    image: "/bildspel_Foto_Dokumentering/PLC_schema Fläktsyst_REV9.jpg",
+    image: "/bildspel_Foto_Dokumentering/Dokumentering/PLC_schema_Fläktsyst_REV9.jpg",
     link: "/tjanster/foto-dokumentering",
     longDescription: "Efter att en systemlösning eller produkt har slutförts, så efterfrågas ofta även dokumenterad grafisk översikt, manualer eller konstruktionsunderlag mm.\n\nVi tar fram allt bild och textmaterial till tydliga och lättåtkomliga digitala eller tryckta format.\n\nEfter fotograferingen erbjuder vi professionell bildbehandling, retuschering, formatering och montering. Vi säkerställer att dina bilder får rätt färgjusteringar, beskärning och andra nödvändiga justeringar för att uppnå bästa möjliga resultat.\n\nVåra tjänster inkluderar även retuschering, borttagning av bakgrunder, skapande av bildkompositioner och anpassning av bilder för olika medier och användningsområden."
   },
   {
     id: "tillverkning",
-    title: "Tillverkning",
+    title: "Tillverkningsmetoder",
     icon: <Wrench className="text-primary" size={28} />,
     description: 'Professionella metoder av "Mixed Arts" karaktär: Från ren Industriell teknisk, till traditionell frihandsskulptering och skalan däremellan.',
     image: "/bildspel_Tekniska_Losningar/Prod_VacLyft_Custom.png",

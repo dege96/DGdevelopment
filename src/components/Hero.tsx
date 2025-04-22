@@ -104,6 +104,23 @@ const Hero = () => {
   const [contentVisible, setContentVisible] = useState(true); // Visa innehåll direkt
   const [unicornLoaded, setUnicornLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  // Check if device is desktop based on screen width
+  useEffect(() => {
+    const checkIfDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024); // 1024px is a common breakpoint for desktop
+    };
+    
+    // Check immediately
+    checkIfDesktop();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfDesktop);
+    
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkIfDesktop);
+  }, []);
   
   // WebGL context cleanup funktion
   const cleanupWebGL = () => {
@@ -135,6 +152,12 @@ const Hero = () => {
   // Ladda Unicorn Studio-skriptet när komponenten monteras
   useEffect(() => {
     console.log('Hero useEffect körs - komponenten monteras');
+    
+    // Only proceed if on desktop
+    if (!isDesktop) {
+      console.log('Skipping Unicorn Studio on mobile - performance optimization');
+      return;
+    }
     
     // Rensa eventuella WebGL-resurser först
     cleanupWebGL();
@@ -232,7 +255,7 @@ const Hero = () => {
       // Rensa WebGL-resurser vid avmontering
       cleanupWebGL();
     };
-  }, []);
+  }, [isDesktop]);
 
   // Logga state-förändringar
   useEffect(() => {
@@ -254,23 +277,25 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-start pt-20 sm:pt-24 overflow-hidden">
-      {/* Unicorn Studio Background */}
-      <div 
-        className={`absolute inset-0 w-full h-full z-5 transition-opacity duration-1000 ${unicornLoaded ? 'opacity-100' : 'opacity-0'}`}
-        style={{ pointerEvents: 'none' }}
-      >
+      {/* Unicorn Studio Background - Only render on desktop */}
+      {isDesktop && (
         <div 
-          data-us-project="3skkbqxNSYJHLb7AXwsb" 
-          data-unicorn-container
-          style={{ 
-            width: '100%', 
-            height: '125%',
-            transform: 'scale(1.1)',
-            transformOrigin: 'center top',
-            marginBottom: '-25%'
-          }}
-        ></div>
-      </div>
+          className={`absolute inset-0 w-full h-full z-5 transition-opacity duration-1000 ${unicornLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{ pointerEvents: 'none' }}
+        >
+          <div 
+            data-us-project="3skkbqxNSYJHLb7AXwsb" 
+            data-unicorn-container
+            style={{ 
+              width: '100%', 
+              height: '125%',
+              transform: 'scale(1.1)',
+              transformOrigin: 'center top',
+              marginBottom: '-25%'
+            }}
+          ></div>
+        </div>
+      )}
       
       {/* Befintlig gradientbakgrund - minskad opacitet */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80 z-10"></div>

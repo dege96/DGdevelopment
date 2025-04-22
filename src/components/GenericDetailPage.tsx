@@ -70,7 +70,7 @@ const GenericDetailPage = ({
       </div>
       
       {/* Main Content */}
-      <section className="py-16">
+      <section className="pb-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
             

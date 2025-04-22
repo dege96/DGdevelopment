@@ -55,7 +55,7 @@ const prototypeImage = {
 };
 
 const designImage = {
-  src: "/bildspel_Design_Formgivning/Scenografi_Logo UV paint _RENDER.png",
+  src: "/bildspel_Design_Formgivning/Scenografi_Logo UV_paint _RENDER.jpg",
   alt: "Design & Formgivning",
   description: "Från idé till färdig design med fokus på funktion och estetik."
 };
@@ -203,9 +203,9 @@ const Index = () => {
       <main>
         <Hero />
         
-        <section className="py-16 md:py-24">
+        <section className="pt-16 pb-16 md:pb-24">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center animate-slideDown opacity-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center animate-slideDown opacity-0 md:pt-6 md:pb-12">
               Våra <span className="text-primary">Tjänster</span>
             </h2>
             

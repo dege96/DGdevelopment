@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -40,7 +39,7 @@ const OmOss = () => {
       </div>
       
       {/* Main Content */}
-      <section className="py-16">
+      <section className="pb-16">
         <div className="container mx-auto px-6">
           <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
             <h3 className="heading-md mb-8 text-white flex items-center">
