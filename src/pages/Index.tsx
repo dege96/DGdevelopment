@@ -77,7 +77,7 @@ const Index = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.remove('opacity-0');
+            entry.target.classList.remove('opacity-0');
         }
       });
     }, { threshold: 0.1 });
@@ -125,41 +125,41 @@ const Index = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       <main>
-        <Hero />
+      <Hero />
         
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center animate-slideDown opacity-0">
               Våra <span className="text-primary">Tjänster</span>
             </h2>
-            
+          
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {services.map((service, index) => (
+            {services.map((service, index) => (
                 <ImageCarousel 
-                  key={index}
+                key={index}
                   images={[service.imageData!]}
                   category={service.title}
-                  description={service.description}
+                description={service.description}
                   showAllLink={service.link}
                   showAsImageCard={true}
                   className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
                   style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-                />
-              ))}
-            </div>
+              />
+            ))}
+          </div>
             
             <div className="text-center mt-12 animate-slideUp opacity-0" style={{ animationDelay: '0.6s' }}>
-              <Link 
+          <Link 
                 to="/tjanster" 
                 className="inline-flex items-center glass hover:bg-white/10 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 group"
-              >
+          >
                 Utforska alla tjänster
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+          </Link>
             </div>
-          </div>
-        </section>
-        
+        </div>
+      </section>
+      
         <ProcessSteps />
       </main>
       <Footer />
