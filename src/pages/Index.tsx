@@ -49,13 +49,13 @@ const ServiceCard = ({ title, description, icon, link, imageData }: {
 };
 
 const designImage = {
-  src: "/HEMSA DGD/Formgivning/NIKE slutleverans MICA x4_.jpg",
+  src: "/TranspBkg/NIKEslutleverans.png",
   alt: "Design & Formgivning",
-  description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering."
+  description: "Teknisk design, CAD & Visualisering, Formgivning, Foto & Dokumentering.",
 };
 
 const technicalImage = {
-  src: "/HEMSA DGD/CAD CAM/Plats Måttanpassat utekök CAD.jpg",
+  src: "/TranspBkg/vaclyft 9kopp.png",
   alt: "Tekniska Lösningar",
   description: "Systemutveckling & Automation, Elektronik & Styrsystem, Konstruktion & Tillverkningsunderlag."
 };
@@ -104,6 +104,7 @@ const Index = () => {
       icon: <Cpu className="w-5 h-5 text-primary" />,
       link: "/tjanster/tekniska-losningar",
       imageData: technicalImage
+      
     },
     {
       title: "Prototyper & Specialtillverkning",
@@ -130,7 +131,7 @@ const Index = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center animate-slideDown opacity-0">
-              Våra <span className="text-primary">Tjänster</span>
+              Tjänster
             </h2>
           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">

@@ -61,7 +61,7 @@ const GallerySection = () => {
     <section className="section-padding" id="galleri">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Våra Arbeten</h2>
+          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Arbeten</h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
         </div>
         

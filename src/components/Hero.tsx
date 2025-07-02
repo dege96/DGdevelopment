@@ -3,7 +3,7 @@ import { ArrowDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Konfigurera UnicornStudio - ändra till true för att aktivera
-const UNICORN_STUDIO_ENABLED = false;
+const UNICORN_STUDIO_ENABLED = true;
 
 declare global {
   interface Window {
@@ -18,23 +18,28 @@ declare global {
 const demoImages = [
   {
     src: "/TranspBkg/DesignF2.png",
-    alt: "Nike tävling medalj"
+    alt: "Nike medalj",
+    link: "/design-formgivning/formgivning"
   },
   {
     src: "/TranspBkg/TekniskaL.png",
-    alt: "Tekniskt verktyg"
+    alt: "Tekniskt verktyg",
+    link: "/tekniska-losningar"
   },
   {
     src: "/TranspBkg/Prototyp.png",
-    alt: "Prototyp av manasi flaska"
+    alt: "Prototyp av manasi flaska",
+    link: "/tekniska-losningar/prototyp"
   },
   {
     src: "/TranspBkg/Prototyp2.png",
-    alt: "Prototyp av upphängbar lampa"
+    alt: "Prototyp av upphängbar lampa",
+    link: "/tekniska-losningar/prototyp"
   },
   {
     src: "/TranspBkg/DesignF.png",
-    alt: "Specialdesign av monter för TV"
+    alt: "Specialdesign av monter för TV",
+    link: "/design-formgivning"
   }
 ];
 
@@ -109,7 +114,7 @@ const Hero = () => {
           <video 
             autoPlay 
             muted 
-            loop 
+            loop
             playsInline
             className="w-full h-full object-cover"
             style={{ pointerEvents: 'none' }}
@@ -125,12 +130,12 @@ const Hero = () => {
       {/* Extra gradient overlay för bättre läsbarhet - justerad opacitet */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40 z-20"></div>
       
-      <div className="container relative z-30 px-4 sm:px-6 py-8 sm:py-12 mx-auto flex flex-col mt-20 sm:mt-0">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container relative z-30 px-0 sm:px-6 py-12 sm:py-20 mx-auto flex flex-col">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Vänster sida - Text innehåll */}
-          <div className="w-full md:w-1/2 flex flex-col items-start text-left mb-8 md:mb-0">
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8 max-w-lg md:max-w-none mx-auto md:mx-0">
             {/* Huvudrubrik med responsiv textstorlek */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
               Från <span 
                 className="text-transparent bg-clip-text animate-gradient"
                 style={{ 
@@ -148,23 +153,27 @@ const Hero = () => {
             </h1>
             
             {/* Underrubrik med responsiv textstorlek och padding */}
-            <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mb-8 sm:mb-10">
+            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl">
               Konsultation inom teknisk projektledning samt design.
               <br />
               Från mindre uppdrag till omfattande system/projekt med helhetsansvar
             </p>
             
             {/* Knapp med responsiv padding */}
-            <div>
-              <Link to="/tjanster" className="inline-flex items-center glass hover:bg-white/10 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all duration-300 group">
-                Utforska
-                <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={18} />
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/tjanster" className="inline-flex items-center justify-center glass hover:bg-white/10 hover:shadow-xl text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 group">
+                Tjänster
+                <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </Link>
+              <Link to="/kontakt" className="inline-flex items-center justify-center bg-primary/20 hover:bg-primary/30 border border-primary/50 hover:border-primary text-primary hover:text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 group">
+                Boka ett möte
+                <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
             </div>
           </div>
           
-          {/* Höger sida - Anpassad bildkarusell utan manuella kontroller */}
-          <div className="w-full md:w-1/2 relative">
+          {/* Höger sida - bildkarusell endast på ≥ md */}
+          <div className="hidden md:block w-full md:w-1/2 relative">
             <div className="relative w-full h-[300px] sm:h-[400px] flex items-center justify-center">
               {/* Bildcontainer med transition */}
               <div className="relative w-full h-full flex items-center justify-center">
@@ -175,11 +184,13 @@ const Hero = () => {
                       index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
                     }`}
                   >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="max-w-full max-h-full object-contain"
-                    />
+                    <Link to={image.link} className="w-full h-full flex items-center justify-center">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                      />
+                    </Link>
                   </div>
                 ))}
               </div>

@@ -135,30 +135,16 @@ const Tjanster = () => {
       {/* Page Header */}
       <div className="pt-32 pb-12 bg-gradient-to-b from-secondary/20 to-background">
         <div className="container mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-slideDown opacity-0">Våra Tjänster</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-slideDown opacity-0">Tjänster</h1>
           <p className="text-white/70 max-w-3xl animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>
             En komplett översikt över alla tjänster vi erbjuder inom design, teknik, prototyper och tillverkning
           </p>
         </div>
       </div>
       
-      {/* Introduktion */}
-      <section className="py-12">
-        <div className="container mx-auto px-6">
-          <div className="glass rounded-xl p-8 md:p-10 animate-slideUp opacity-0">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Från vision till färdig produkt</h2>
-            <p className="text-white/80 mb-6">
-              Vi erbjuder ett brett utbud av tjänster som hjälper dig att ta dina idéer från koncept till färdig produkt. 
-              Vårt team har expertis inom flera områden och kan ge dig skräddarsydda lösningar anpassade till dina specifika behov och mål.
-            </p>
-            <p className="text-white/80">
-              Utforska våra tjänstekategorier nedan för att hitta den expertis du behöver. Oavsett om du behöver hjälp med design, 
-              tekniska lösningar, prototyper eller tillverkning, har vi kunskapen och erfarenheten för att hjälpa dig lyckas.
-            </p>
-          </div>
-        </div>
-      </section>
-      
+      {/* Dekorativt streck under rubriken */}
+      <div className="w-20 h-1 bg-primary rounded-full mt-4 animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
+
       {/* Tjänstekategorier */}
       <section className="py-12">
         <div className="container mx-auto px-6">

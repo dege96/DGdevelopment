@@ -122,7 +122,7 @@ const Navbar = () => {
       ]
     },
     {
-      title: "Tillverkningsmetoder",
+      title: "Tillverkning",
       path: "/tjanster/tillverkningsmetoder",
       icon: <Wrench className="w-5 h-5 text-primary" />,
       items: [
@@ -185,14 +185,22 @@ const Navbar = () => {
       ref={navRef}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 md:px-12',
-        isScrolled
-          ? 'py-4 backdrop-blur-xl bg-background/80 border-b border-white/10 shadow-md'
-          : 'py-6 bg-transparent'
+        isScrolled ? 'py-4' : 'py-6'
       )}
       style={{
         transition: 'background-color 0.3s ease-in-out'
       }}
     >
+      {/* Bakgrundslager som ger blur efter scroll, utan att påverka stacking-context */}
+      <div
+        aria-hidden
+        className={cn(
+          'absolute inset-0 -z-10 transition-all duration-300 pointer-events-none',
+          isScrolled
+            ? 'backdrop-blur-xl bg-background/80 border-b border-white/10 shadow-md'
+            : 'bg-transparent'
+        )}
+      />
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-bold text-white animate-fadeIn hover:scale-105 transition-transform duration-300">
@@ -274,7 +282,7 @@ const Navbar = () => {
             {/* Kreativa tjänster */}
             <div className="w-1/2 pr-8">
               <h3 className="text-white/65 font-semibold text-lg mb-6 uppercase tracking-wider">
-                Kreativa tjänster
+                {/* Header left */}
               </h3>
               <div className="grid grid-cols-1 gap-6">
                 {kreativaTjanster.map((category, idx) => (
@@ -308,7 +316,7 @@ const Navbar = () => {
             {/* Tekniska tjänster */}
             <div className="w-1/2 pl-8 border-l border-white/10">
               <h3 className="text-white/65 font-semibold text-lg mb-6 uppercase tracking-wider">
-                Tekniska tjänster
+                {/* Header right */}
               </h3>
               <div className="grid grid-cols-1 gap-6">
                 {tekniskaTjanster.map((category, idx) => (
@@ -344,7 +352,7 @@ const Navbar = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-background pt-20 z-40 animate-fadeIn overflow-y-auto">
+        <div className="fixed inset-0 bg-background pt-20 z-50 animate-fadeIn overflow-y-auto">
           {/* Tydlig stängknapp i övre högra hörnet */}
           <button 
             className="absolute top-6 right-6 text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300"
@@ -377,7 +385,7 @@ const Navbar = () => {
                       {/* Kreativa tjänster */}
                       <div className="mb-6">
                         <h3 className="text-white/65 font-semibold mb-3 flex items-center justify-center uppercase tracking-wider">
-                          Kreativa tjänster
+                          {/* Header left */}
                         </h3>
                         <div className="space-y-4">
                           {kreativaTjanster.map((category, idx) => (
@@ -416,7 +424,7 @@ const Navbar = () => {
                       {/* Tekniska tjänster */}
                       <div>
                         <h3 className="text-white/65 font-semibold mb-3 flex items-center justify-center uppercase tracking-wider">
-                          Tekniska tjänster
+                          {/* Header right */}
                         </h3>
                         <div className="space-y-4">
                           {tekniskaTjanster.map((category, idx) => (

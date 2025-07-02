@@ -1,6 +1,6 @@
-
 import React from 'react';
-import { BrainCircuit, Lightbulb, EyeIcon, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BrainCircuit, Lightbulb, EyeIcon, CheckCircle, ChevronRight } from 'lucide-react';
 
 const ProcessSteps = () => {
   const steps = [
@@ -34,7 +34,13 @@ const ProcessSteps = () => {
           <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+        {/* Mobilvy: visa SVG-grafik */}
+        <div className="md:hidden flex justify-center animate-fadeIn">
+          <img src="/process.png" alt="Processöversikt" className="max-w-full h-auto" />
+        </div>
+
+        {/* Desktop / större skärmar: kort-layout */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {steps.map((step, index) => (
             <div 
               key={index}
@@ -55,6 +61,26 @@ const ProcessSteps = () => {
             </div>
           ))}
         </div>
+
+      {/* CTA-sektion */}
+      <section className="py-12 mb-12">
+        <div className="container mx-auto px-6">
+          <div className="glass rounded-xl p-8 md:p-10 text-center animate-slideUp opacity-0">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Behöver du hjälp med ditt projekt?</h2>
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+              Kontakta mig idag för att se hur jag kan hjälpa dig att göra era idéer till verklighet.<br></br>
+              Jag erbjuder kostnadsfria inledande konsultationer för att förstå era behov bättre.
+            </p>
+            <Link 
+              to="/kontakt" 
+              className="inline-flex items-center glass hover:bg-white/10 text-white px-8 py-3 rounded-full transition-all duration-300 group"
+            >
+              Kontakta oss
+              <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
       </div>
     </section>
   );

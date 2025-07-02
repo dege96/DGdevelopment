@@ -6,7 +6,7 @@ const ServicesSection = () => {
     <section className="section-padding bg-secondary/10" id="tjänster">
       <div className="container mx-auto">
         <div className="mb-16 text-center">
-          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Våra Tjänster</h2>
+          <h2 className="heading-lg mb-6 animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>Tjänster</h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
         </div>
         
