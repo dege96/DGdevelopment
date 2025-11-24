@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -23,7 +24,6 @@ import Prototyp from "./pages/tekniska/Prototyp";
 import Tillverkning from "./pages/tekniska/Tillverkning";
 
 // Media pages
-import Media from "./pages/Media";
 import Produktfotografering from "./pages/media/Produktfotografering";
 import Eventdokumentation from "./pages/media/Eventdokumentation";
 import Naturfoto from "./pages/media/Naturfoto";
@@ -34,12 +34,31 @@ import Kontakt from "./pages/Kontakt";
 
 const queryClient = new QueryClient();
 
+// Global komponent för hash-scroll
+const ScrollToHash = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#','');
+      // Timeout för att säkerställa att DOM är färdigrenderad
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+    }
+  }, [location]);
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<Index />} />
           
@@ -84,8 +103,8 @@ const App = () => (
           <Route path="/tjanster/tillverkningsmetoder/formtillverkning" element={<Tillverkning />} />
           <Route path="/tjanster/tillverkningsmetoder/laminering-gjutning" element={<Tillverkning />} />
           
-          {/* Media routes */}
-          <Route path="/media" element={<Media />} />
+          {/* Media routes (använder FotoDokumentering som huvudsida) */}
+          <Route path="/media" element={<FotoDokumentering />} />
           <Route path="/media/produktfotografering" element={<Produktfotografering />} />
           <Route path="/media/eventdokumentation" element={<Eventdokumentation />} />
           <Route path="/media/naturfoto" element={<Naturfoto />} />

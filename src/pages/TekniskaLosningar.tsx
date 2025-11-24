@@ -26,7 +26,7 @@ const TekniskaLosningar = () => {
         },
         {
           id: "tillverkning",
-          title: "Tillverkningsmetoder",
+          title: "Tillverkning",
           icon: <Layers3 className="text-primary" size={24} />,
           description: "Kombinationer av traditionellt hantverk och moderna tillverkningsmetoder.",
           link: "/tekniska-losningar/tillverkning"

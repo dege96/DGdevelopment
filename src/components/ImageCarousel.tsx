@@ -77,9 +77,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             
-            {/* Rektangel bakom texten */}
-            <div className="absolute bottom-0 left-0 w-full flex justify-center pb-4 px-2">
-              <div className="glass rounded-xl p-8 md:p-10 w-full md:w-auto text-left md:text-center animate-slideUp opacity-0" style={{ animationDelay: '0.1s' }}>
+            {/* Rektangel bakom texten centrerad */}
+            <div className="absolute inset-0 w-full flex items-center md:items-end justify-center px-2 md:pb-4">
+              <div className="glass rounded-xl p-4 md:p-10 w-full h-full md:w-auto md:h-auto text-left md:text-center animate-slideUp opacity-0" style={{ animationDelay: '0.1s' }}>
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{category}</h3>
                 {description && (
                   <p className="text-white/80 text-sm md:text-base mb-0 max-w-md">{description}</p>
@@ -138,9 +138,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           <ChevronRight size={24} />
         </button>
 
-        {/* Rektangel bakom texten i karusellen */}
-        <div className="absolute bottom-0 left-0 w-full flex justify-center pb-4 px-2 pointer-events-none">
-          <div className="glass rounded-xl p-8 md:p-10 w-full md:w-auto text-left md:text-center animate-slideUp opacity-0 pointer-events-auto" style={{ animationDelay: '0.1s' }}>
+        {/* Rektangel bakom texten i karusellen centrerad */}
+        <div className="absolute inset-0 w-full flex items-center md:items-end justify-center px-2 md:pb-4 pointer-events-none">
+          <div className="glass rounded-xl p-4 md:p-10 w-full h-full md:w-auto md:h-auto text-left md:text-center animate-slideUp opacity-0 pointer-events-auto" style={{ animationDelay: '0.1s' }}>
             <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{category}</h3>
             {description && (
               <p className="text-white/80 text-sm md:text-base mb-0 max-w-md">{description}</p>

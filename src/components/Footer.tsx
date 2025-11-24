@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="mb-8 md:mb-0">
             <div className="text-3xl font-bold text-white mb-2">
-              DG<span className="text-primary"> DEVELOPMENT</span>
+              DG DEVELOPMENT
             </div>
             <p className="text-white/70">Konsultation inom teknisk projektledning, design och tillverkning</p>
           </div>

@@ -63,13 +63,14 @@ const ProcessSteps = () => {
         </div>
 
       {/* CTA-sektion */}
-      <section className="py-12 mb-12">
-        <div className="container mx-auto px-6">
+      <section className="py-12">
+        <div className="">
           <div className="glass rounded-xl p-8 md:p-10 text-center animate-slideUp opacity-0">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Behöver du hjälp med ditt projekt?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Vill du ha hjälp med ditt projekt?</h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Kontakta mig idag för att se hur jag kan hjälpa dig att göra era idéer till verklighet.<br></br>
-              Jag erbjuder kostnadsfria inledande konsultationer för att förstå era behov bättre.
+              Boka ett möte så ser vi hur vi kan samarbeta för att göra era idéer till verklighet.<br></br>
+              <br></br>
+              Kostnadsfri inledande konsultation för att förstå ditt projekt bättre.
             </p>
             <Link 
               to="/kontakt" 

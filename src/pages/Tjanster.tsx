@@ -11,7 +11,7 @@ const serviceCategories = [
     title: "Design & Formgivning",
     icon: <Palette className="text-primary" size={28} />,
     description: "Från idé till färdig design med fokus på funktion och estetik.",
-    image: "/HEMSA DGD/Formgivning/NIKE slutleverans MICA x4_.jpg",
+    image: "/TranspBkg/NIKEslutleverans.png",
     link: "/tjanster/design-formgivning",
     services: [
       "Teknisk design",
@@ -25,7 +25,7 @@ const serviceCategories = [
     title: "Tekniska Lösningar",
     icon: <Cpu className="text-primary" size={28} />,
     description: "Innovativa tekniska lösningar för komplexa utmaningar.",
-    image: "/HEMSA DGD/CAD CAM/Plats Måttanpassat utekök CAD.jpg",
+    image: "/TranspBkg/vaclyft_v2.png",
     link: "/tjanster/tekniska-losningar",
     services: [
       "Systemutveckling & Automation",
@@ -38,7 +38,7 @@ const serviceCategories = [
     title: "Prototyper & Specialtillverkning",
     icon: <Printer className="text-primary" size={28} />,
     description: "Snabb och precis prototypframställning för att testa och visualisera koncept.",
-    image: "/HEMSA DGD/Formgivning/3Dprint finishing closeup.jpg",
+    image: "/TranspBkg/Manasi Flaska Cap_fri.png",
     link: "/tjanster/prototyper",
     services: [
       "Prototypframställning",
@@ -48,10 +48,10 @@ const serviceCategories = [
   },
   {
     id: "tillverkningsmetoder",
-    title: "Tillverkningsmetoder",
+    title: "Tillverkning",
     icon: <Wrench className="text-primary" size={28} />,
     description: "Professionella tillverkningsmetoder för högkvalitativa resultat.",
-    image: "/HEMSA DGD/Formgivning/Form_CF_Laminering-007.jpg",
+    image: "/TranspBkg/DGDtest_iskristall_rb.png",
     link: "/tjanster/tillverkningsmetoder",
     services: [
       "CNC-fräsning & Laserskärning",
@@ -63,13 +63,13 @@ const serviceCategories = [
 
 const ServiceCard = ({ category, isEven }: { category: typeof serviceCategories[0], isEven: boolean }) => {
   return (
-    <div className={`flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} gap-8 mb-16 animate-slideUp opacity-0`}>
+    <div id={category.id} className={`glass rounded-xl p-8 md:p-10 flex flex-col md:flex-row ${isEven ? 'md:flex-row-reverse' : ''} gap-8 mb-16 animate-slideUp opacity-0`}>
       {/* Bild */}
       <div className="w-full md:w-1/2 h-[300px] rounded-xl overflow-hidden">
         <img 
           src={category.image} 
           alt={category.title} 
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+          className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
         />
       </div>
       
@@ -139,11 +139,12 @@ const Tjanster = () => {
           <p className="text-white/70 max-w-3xl animate-slideDown opacity-0" style={{ animationDelay: '0.2s' }}>
             En komplett översikt över alla tjänster vi erbjuder inom design, teknik, prototyper och tillverkning
           </p>
+                {/* Dekorativt streck under rubriken */}
+      <div className="w-20 h-1 bg-primary rounded-full mt-4 animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
+
         </div>
       </div>
       
-      {/* Dekorativt streck under rubriken */}
-      <div className="w-20 h-1 bg-primary rounded-full mt-4 animate-slideDown opacity-0" style={{ animationDelay: '0.4s' }}></div>
 
       {/* Tjänstekategorier */}
       <section className="py-12">

@@ -1,78 +1,72 @@
 import React from 'react';
-import GenericDetailPage from '@/components/GenericDetailPage';
-import { Camera, FileEdit, Image } from 'lucide-react';
+import GenericPage from '@/components/GenericPage';
+import { Camera, Film, Image } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// Sidan FotoDokumentering ska nu visa samma innehåll som tidigare Media-sida
 const FotoDokumentering = () => {
   return (
-    <GenericDetailPage
+    <GenericPage
       title="Foto & Dokumentering"
-      subtitle="Professionella foto- och dokumentationstjänster för ditt projekt"
-      backLink="/design-formgivning"
-      backText="Design & Formgivning"
+      subtitle="Professionell fotografi och dokumentation"
+      description="Vi erbjuder professionella foto- och dokumentationstjänster som fångar varje ögonblick och presenterar dina produkter, projekt eller event på bästa sätt. Vårt team kombinerar teknisk skicklighet med kreativ känsla för att leverera material av högsta kvalitet."
+      gridCols={3}
       sections={[
-        [
-          {
-            title: "Fototjänster",
-            icon: <Camera className="text-primary mr-3" size={24} />,
-            description: (
-              <>
-                <p className="mb-4">
-                  Vi erbjuder högkvalitativa fototjänster, både på plats hos dig eller i vår studio. Vårt team 
-                  fotograferar produkter, events och annat med professionell utrustning och ett tränat öga för 
-                  komposition och ljussättning.
-                </p>
-                <p>
-                  Vi anpassar våra fotosessioner efter dina specifika behov, oavsett om det handlar om 
-                  produktfotografering för e-handel, dokumentation av ett event eller bilder för marknadsföringsmaterial.
-                </p>
-              </>
-            )
-          },
-          {
-            title: "Retuschering & Formatering",
-            icon: <FileEdit className="text-primary mr-3" size={24} />,
-            description: (
-              <>
-                <p className="mb-4">
-                  Efter fotograferingen erbjuder vi professionell bildbehandling, retuschering, formatering och 
-                  montering. Vi säkerställer att dina bilder får rätt färgjusteringar, beskärning och andra 
-                  nödvändiga justeringar för att uppnå bästa möjliga resultat.
-                </p>
-                <p>
-                  Våra tjänster inkluderar även avancerad retuschering, borttagning av bakgrunder, skapande av 
-                  bildkompositioner och anpassning av bilder för olika medier och användningsområden.
-                </p>
-              </>
-            )
-          }
-        ]
+        {
+          id: "produktfotografering",
+          title: "Produktfotografering",
+          icon: <Camera className="text-primary" size={24} />,
+          description: "Professionell fotografering av produkter för marknadsföring, e-handel och dokumentation.",
+          link: "/media/produktfotografering"
+        },
+        {
+          id: "eventdokumentation",
+          title: "Eventdokumentation",
+          icon: <Film className="text-primary" size={24} />,
+          description: "Omfattande dokumentation av företagsevent, konferenser, mässor och andra tillfällen.",
+          link: "/media/eventdokumentation"
+        },
+        {
+          id: "naturfoto",
+          title: "Naturfotogalleri",
+          icon: <Image className="text-primary" size={24} />,
+          description: "Utforska vår samling av högkvalitativa naturfotografier.",
+          link: "/media/naturfoto"
+        }
       ]}
       specialSections={[
         {
           title: "Mer om våra mediatjänster",
           icon: <Image className="text-primary mr-3" size={24} />,
           content: (
-            <>
-              <p className="mb-4">
-                För mer information om våra fototjänster för produkter och events, samt vårt naturfotogalleri, 
-                besök vår mediasida:
-              </p>
-              <div className="flex space-x-4 mt-6">
-                <Link 
-                  to="/media" 
-                  className="py-2 px-6 bg-primary/20 hover:bg-primary/30 text-white rounded-md transition-colors"
-                >
-                  Media
-                </Link>
-                <Link 
-                  to="/media/naturfoto" 
-                  className="py-2 px-6 bg-primary/20 hover:bg-primary/30 text-white rounded-md transition-colors"
-                >
-                  Naturfotogalleri
-                </Link>
+            <div className="space-y-8">
+              {/* Eventfotografering */}
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Eventfotografering</h4>
+                <p className="mb-4">
+                  Våra fotografer dokumenterar allt från företagskonferenser och produktlanseringar till mässor och festliga tillställningar. Med en diskret närvaro fångar vi stämning, viktiga ögonblick och detaljer som ger ditt event ett bestående värde.
+                </p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Diskret närvaro på plats</li>
+                  <li>Fokus på stämning, detaljer &amp; nyckelögonblick</li>
+                  <li>Material anpassat för intern och extern kommunikation</li>
+                </ul>
               </div>
-            </>
+
+              {/* Efterbearbetning */}
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-3">Efterbearbetning &amp; Leverans</h4>
+                <p className="mb-4">
+                  Efter eventet går vi igenom allt material och väljer ut de bästa bilderna. Varje bild färgkorrigeras och retuscheras för att säkerställa högsta kvalitet.
+                </p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Urval av bästa bilderna</li>
+                  <li>Färgkorrigering &amp; retuschering</li>
+                  <li>Leverans i högupplöst &amp; webbanpassat format</li>
+                  <li>Möjlighet till bildpresentationer &amp; montages</li>
+                </ul>
+              </div>
+            </div>
           )
         }
       ]}

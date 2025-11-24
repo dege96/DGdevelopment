@@ -16,10 +16,12 @@ import {
   Settings
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SearchBar, { SearchItem } from './SearchBar';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeMobileMain, setActiveMobileMain] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showTjansterMenu, setShowTjansterMenu] = useState(false);
   const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -73,11 +75,7 @@ const Navbar = () => {
   };
 
   const toggleDropdown = (dropdown: string) => {
-    if (activeDropdown === dropdown) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(dropdown);
-    }
+    setActiveDropdown(prev => (prev === dropdown ? null : dropdown));
   };
 
   const closeMobileMenu = () => {
@@ -131,6 +129,18 @@ const Navbar = () => {
         { title: 'Vacuum-laminering & Formgjutning', path: '/tjanster/tillverkningsmetoder/laminering-gjutning' },
       ]
     }
+  ];
+
+  // ----- SÖKDATA -----
+  const searchItems: SearchItem[] = [
+    ...kreativaTjanster.flatMap(cat => [
+      { title: cat.title, path: `/tjanster#${cat.title.toLowerCase().replace(/ & | /g,'-').replace(/å/g,'a').replace(/ä/g,'a').replace(/ö/g,'o')}` },
+      ...cat.items.map((it: any) => ({ title: it.title, path: it.path }))
+    ]),
+    ...tekniskaTjanster.flatMap(cat => [
+      { title: cat.title, path: `/tjanster#${cat.title.toLowerCase().replace(/ & | /g,'-').replace(/å/g,'a').replace(/ä/g,'a').replace(/ö/g,'o')}` },
+      ...cat.items.map((it: any) => ({ title: it.title, path: it.path }))
+    ])
   ];
 
   const mainNavItems = [
@@ -213,7 +223,11 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-6 items-center">
+        <ul className="hidden md:flex space-x-10 items-center">
+          {/* Sökfält */}
+          <li className="pr-4">
+            <SearchBar items={searchItems} />
+          </li>
           {mainNavItems.map((item, index) => (
             <li key={index} className="relative" style={{ 
               animation: 'slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards',
@@ -373,15 +387,21 @@ const Navbar = () => {
                   <div className="w-full">
                     <button 
                       className="flex items-center justify-center w-full text-white/80 hover:text-primary transition-colors duration-300 font-medium text-xl py-2"
-                      onClick={() => toggleDropdown(item.title)}
+                      onClick={() => {
+                        setActiveMobileMain(prev => (prev === item.title ? null : item.title));
+                        // Återställ ev. öppna undermenyer om toppnivån stängs
+                        if (activeMobileMain === item.title) {
+                          setActiveDropdown(null);
+                        }
+                      }}
                     >
                       <span className="mr-2">{item.title}</span>
                       <ChevronDown 
-                        className={`w-5 h-5 transition-transform duration-300 ${activeDropdown === item.title ? 'rotate-180' : ''}`} 
+                        className={`w-5 h-5 transition-transform duration-300 ${activeMobileMain === item.title ? 'rotate-180' : ''}`} 
                       />
                     </button>
-                    
-                    <div className={`mt-4 space-y-3 text-left ${activeDropdown === item.title ? 'block' : 'hidden'}`}>
+                                        
+                    <div className={`mt-4 space-y-3 text-left ${activeMobileMain === item.title ? 'block' : 'hidden'}`}>
                       {/* Kreativa tjänster */}
                       <div className="mb-6">
                         <h3 className="text-white/65 font-semibold mb-3 flex items-center justify-center uppercase tracking-wider">

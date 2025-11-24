@@ -47,6 +47,11 @@
   * {
     @apply border-border selection:bg-primary/20 selection:text-white transition-colors;
   }
+
+  /* Sekundär bakgrundsfärg */
+  .bg-secondary-custom {
+    background-color: #191e27;
+  }
 }
 
 @layer utilities {

@@ -4,6 +4,13 @@ import Footer from '@/components/Footer';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+export type SpecialSectionProps = {
+  title?: string;
+  icon?: React.ReactNode;
+  content: React.ReactNode;
+  className?: string;
+};
+
 export type SectionCardProps = {
   id: string;
   title: string;
@@ -38,6 +45,7 @@ export type GenericPageProps = {
   sections: SectionCardProps[];
   gridCols?: 2 | 3;
   paddingStyle?: 'pb-16';
+  specialSections?: SpecialSectionProps[];
 };
 
 const GenericPage = ({ 
@@ -46,7 +54,8 @@ const GenericPage = ({
   description, 
   sections, 
   gridCols = 3,
-  paddingStyle = 'pb-16'
+  paddingStyle = 'pb-16',
+  specialSections = []
 }: GenericPageProps) => {
   // Animation observer
   useEffect(() => {
@@ -100,6 +109,21 @@ const GenericPage = ({
                 />
               ))}
             </div>
+
+            {/* Specialsektioner */}
+            {specialSections.map((special, idx) => (
+              <div key={`special-${idx}`} className={`${special.className || 'mt-10 border-t border-white/10 pt-8'}`}>
+                {special.title && (
+                  <h3 className="heading-md mb-4 text-white flex items-center">
+                    {special.icon}
+                    <span className="ml-2">{special.title}</span>
+                  </h3>
+                )}
+                <div className="text-white/80">
+                  {special.content}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

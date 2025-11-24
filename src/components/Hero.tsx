@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { ArrowDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-// Konfigurera UnicornStudio - ändra till true för att aktivera
-const UNICORN_STUDIO_ENABLED = true;
+import StripeGradient from './StripeGradient';
 
 declare global {
   interface Window {
-    UnicornStudio: {
-      isInitialized: boolean;
-      init?: () => void;
-    };
+    Gradient: any;
   }
 }
+
+// Gradient-färger - definierade utanför komponenten för stabil referens
+const GRADIENT_COLORS = ['#a960ee', '#ff333d', '#90e0ff', '#ffcb57'];
 
 // Bilder för karusellen - alla bilder från TranspBkg-mappen
 const demoImages = [
@@ -44,38 +42,15 @@ const demoImages = [
 ];
 
 const Hero = () => {
-  const [unicornLoaded, setUnicornLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  // Ladda Unicorn Studio-skriptet när komponenten monteras (bara om aktiverat)
-  useEffect(() => {
-    if (UNICORN_STUDIO_ENABLED) {
-      const loadUnicornStudio = () => {
-        if (!window.UnicornStudio) {
-          window.UnicornStudio = { isInitialized: false };
-          const script = document.createElement('script');
-          script.src = "https://cdn.unicorn.studio/v1.4.2/unicornStudio.umd.js";
-          script.onload = function() {
-            if (window.UnicornStudio && !window.UnicornStudio.isInitialized && window.UnicornStudio.init) {
-              window.UnicornStudio.init();
-              window.UnicornStudio.isInitialized = true;
-              
-              // Markera att Unicorn Studio har laddats
-              setTimeout(() => {
-                setUnicornLoaded(true);
-              }, 300);
-            }
-          };
-          document.head.appendChild(script);
-        } else if (window.UnicornStudio.isInitialized) {
-          // Om redan initialiserad, markera som laddad
-          setUnicornLoaded(true);
-        }
-      };
-      
-      loadUnicornStudio();
-    }
-  }, []);
+
+  // Memoize gradient props för att förhindra onödiga re-renders
+  const gradientProps = useMemo(() => ({
+    colors: GRADIENT_COLORS,
+    width: '100%',
+    height: '100vh',
+    className: 'absolute inset-0'
+  }), []);
 
   // Automatisk bildväxling
   useEffect(() => {
@@ -89,53 +64,71 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Bakgrund - antingen UnicornStudio eller video */}
-      {UNICORN_STUDIO_ENABLED ? (
-        // Unicorn Studio Background
-        <div 
-          className={`absolute inset-0 w-full h-full z-5 transition-opacity duration-1000 ${unicornLoaded ? 'opacity-100' : 'opacity-0'}`}
-          style={{ pointerEvents: 'none' }}
-        >
-          <div 
-            data-us-project="3skkbqxNSYJHLb7AXwsb" 
-            style={{ 
-              width: '100%', 
-              height: '125%',
-              transform: 'scale(1.1)',
-              transformOrigin: 'center top',
-              marginBottom: '-25%'
-            }}
-          ></div>
-        </div>
-      ) : (
-        // Video Background
-        <div className="absolute inset-0 w-full h-full z-5">
-          <video 
-            autoPlay 
-            muted 
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            style={{ pointerEvents: 'none' }}
-          >
-            <source src="/video.webm" type="video/webm" />
-          </video>
-        </div>
-      )}
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#2d1b4e' }}>
+      {/* SVG för vågig clip-path */}
+      <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
+        <defs>
+          {/* Desktop - vertikal våg */}
+          <clipPath id="wavyRightEdge" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 
+                     L 0.50,0 
+                     C 0.46,0.30 0.64,0.70 0.60,1
+                     L 0,1 Z" />
+          </clipPath>
+          {/* Mobil - horisontell våg (roterad 90 grader) */}
+          <clipPath id="wavyBottomEdge" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 
+                     L 0,0.50
+                     C 0.30,0.46 0.70,0.64 1,0.60
+                     L 1,0
+                     L 0,0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+      
+      {/* CSS för responsiv clip-path */}
+      <style>{`
+        @media (max-width: 767px) {
+          .hero-gradient-clip {
+            clip-path: url(#wavyBottomEdge) !important;
+          }
+        }
+        @media (min-width: 768px) {
+          .hero-gradient-clip {
+            clip-path: url(#wavyRightEdge) !important;
+          }
+        }
+      `}</style>
+      
+      {/* Stripe Gradient Bakgrund */}
+      <div 
+        className="hero-gradient-clip absolute inset-0 w-full h-full z-5" 
+        style={{ 
+          pointerEvents: 'none'
+        }}
+      >
+        <StripeGradient key="hero-gradient" {...gradientProps} />
+      </div>
       
       {/* Befintlig gradientbakgrund - minskad opacitet */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80 z-10"></div>
       
       {/* Extra gradient overlay för bättre läsbarhet - justerad opacitet */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40 z-20"></div>
+      <div
+        className="absolute inset-0 bg-gradient-to-b z-20"
+        style={{
+          // Skräddarsydd gradient enligt instruktion
+          "--tw-gradient-stops":
+            "hsl(220deg 6.13% 3.56% / 47%), #000000a8 var(--tw-gradient-via-position), hsl(0deg 0% 0% / 40%)",
+        } as React.CSSProperties}
+      ></div>
       
-      <div className="container relative z-30 px-0 sm:px-6 py-12 sm:py-20 mx-auto flex flex-col">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12">
+      <div className="container relative z-30 px-0 sm:px-20 py-12 sm:py-24 mx-auto flex flex-col">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between">
           {/* Vänster sida - Text innehåll */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8 max-w-lg md:max-w-none mx-auto md:mx-0">
             {/* Huvudrubrik med responsiv textstorlek */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white">
               Från <span 
                 className="text-transparent bg-clip-text animate-gradient"
                 style={{ 
@@ -153,9 +146,8 @@ const Hero = () => {
             </h1>
             
             {/* Underrubrik med responsiv textstorlek och padding */}
-            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl">
+            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-[21rem]">
               Konsultation inom teknisk projektledning samt design.
-              <br />
               Från mindre uppdrag till omfattande system/projekt med helhetsansvar
             </p>
             

@@ -33,7 +33,7 @@ const ServiceCard = ({ title, description, icon, link, imageData }: {
   }
 
   return (
-    <div className="glass p-6 rounded-xl hover:bg-white/5 transition-all duration-300 group animate-slideUp opacity-0" style={{ animationDelay: '0.3s' }}>
+    <div className="glass p-6 rounded-xl hover:bg-white/5 transition-all duration-300 group animate-slideUp opacity-0 h-[380px] md:h-[380px] flex flex-col" style={{ animationDelay: '0.3s' }}>
       <div className="flex items-center mb-4">
         <div className="bg-secondary/50 p-3 rounded-lg mr-4 group-hover:bg-primary/20 transition-colors">
           {icon}
@@ -61,14 +61,14 @@ const technicalImage = {
 };
 
 const prototypeImage = {
-  src: "/HEMSA DGD/Formgivning/3Dprint finishing closeup.jpg",
+  src: "/TranspBkg/DGDtest_iskristall.jpg",
   alt: "Prototyper & Specialtillverkning",
   description: "Prototypframställning, 3D-printning & Lasergravering, Modellbygge."
 };
 
 const manufacturingImage = {
-  src: "/HEMSA DGD/Formgivning/Form_CF_Laminering-007.jpg",
-  alt: "Tillverkningsmetoder",
+  src: "/TranspBkg/LaserGravyr-001.jpg",
+  alt: "Tillverkning",
   description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning."
 };
 
@@ -114,7 +114,7 @@ const Index = () => {
       imageData: prototypeImage
     },
     {
-      title: "Tillverkningsmetoder",
+      title: "Tillverkning",
       description: "CNC-fräsning & Laserskärning, Formtillverkning, Vacuum-laminering & Formgjutning.",
       icon: <Wrench className="w-5 h-5 text-primary" />,
       link: "/tjanster/tillverkningsmetoder",
@@ -143,7 +143,7 @@ const Index = () => {
                 description={service.description}
                   showAllLink={service.link}
                   showAsImageCard={true}
-                  className="animate-slideUp opacity-0 h-[320px] md:h-[380px]"
+                  className="animate-slideUp opacity-0 h-[180px] md:h-[380px]"
                   style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               />
             ))}
