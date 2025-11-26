@@ -65,27 +65,31 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--bg-hero)' }}>
-      {/* SVG för vågig clip-path (endast desktop) */}
-      <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
-        <defs>
-          {/* Desktop - vertikal våg (reverserad för vänster sida) */}
-          <clipPath id="wavyRightEdge" clipPathUnits="objectBoundingBox">
-            <path d="M 1,0 
-                     L 0.45,0 
-                     C 0.49,0.30 0.41,0.70 0.45,1
-                     L 1,1 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-      
-      {/* CSS för responsiv clip-path (endast större desktop) */}
-      <style>{`
-        @media (min-width: 1024px) {
-          .hero-gradient-clip {
-            clip-path: url(#wavyRightEdge) !important;
-          }
-        }
-      `}</style>
+      {/* SVG för vågig clip-path - INTE I ANVÄNDNING */}
+      {false && (
+        <>
+          <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
+            <defs>
+              {/* Desktop - vertikal våg (reverserad för vänster sida) */}
+              <clipPath id="wavyRightEdge" clipPathUnits="objectBoundingBox">
+                <path d="M 1,0 
+                         L 0.45,0 
+                         C 0.49,0.30 0.41,0.70 0.45,1
+                         L 1,1 Z" />
+              </clipPath>
+            </defs>
+          </svg>
+          
+          {/* CSS för responsiv clip-path (endast större desktop) */}
+          <style>{`
+            @media (min-width: 1024px) {
+              .hero-gradient-clip {
+                clip-path: url(#wavyRightEdge) !important;
+              }
+            }
+          `}</style>
+        </>
+      )}
       
       {/* Stripe Gradient Bakgrund */}
       <div 
@@ -97,13 +101,14 @@ const Hero = () => {
         <StripeGradient key="hero-gradient" {...gradientProps} />
       </div>
       
-      {/* Mörk gradient overlay för bättre kontrast */}
+      {/* Mörk lineargradient overlay för bättre kontrast */}
       <div
         className="absolute inset-0 z-20"
         style={{
-          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.6) 100%)"
+          background: "linear-gradient(to bottom, rgb(0 0 0 / 84%) 0%, rgba(0, 0, 0, 0.5) 50%, rgb(16 19 24) 100%)"
         }}
       ></div>
+      {/* Hero container för textinnehåll */}
       <div className="container relative z-30 px-0 sm:px-20 py-12 sm:py-24 mx-auto flex flex-col">
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           {/* Vänster sida - Text innehåll */}
