@@ -52,8 +52,9 @@ const Kontakt = () => {
             <div className="animate-slideUp opacity-0">
               <div className="glass p-8 rounded-xl h-full">
                 <h2 className="text-2xl font-semibold text-white mb-6">Kontaktuppgifter</h2>
-                
-                <div className="space-y-6">
+
+                {/* E-post */}
+                <div className="mt-6 p-6 bg-background/50 rounded-lg border border-white/10">
                   <div className="flex items-start">
                     <div className="bg-secondary/50 p-3 rounded-lg mr-4">
                       <Mail className="w-5 h-5 text-primary" />
@@ -65,7 +66,10 @@ const Kontakt = () => {
                       </a>
                     </div>
                   </div>
-                  
+                </div>
+
+                {/* Telefon */}
+                <div className="mt-6 p-6 bg-background/50 rounded-lg border border-white/10">
                   <div className="flex items-start">
                     <div className="bg-secondary/50 p-3 rounded-lg mr-4">
                       <Phone className="w-5 h-5 text-primary" />
@@ -73,11 +77,14 @@ const Kontakt = () => {
                     <div>
                       <h3 className="text-white font-medium mb-1">Telefon</h3>
                       <a href="tel:+4612345678" className="text-white/70 hover:text-primary transition-colors">
-                        +46 (0) 12 345 678
+                        +46 70 718 98 77
                       </a>
                     </div>
                   </div>
-                  
+                </div>
+
+                {/* Adress */}
+                <div className="mt-6 p-6 bg-background/50 rounded-lg border border-white/10">
                   <div className="flex items-start">
                     <div className="bg-secondary/50 p-3 rounded-lg mr-4">
                       <MapPin className="w-5 h-5 text-primary" />
@@ -86,21 +93,14 @@ const Kontakt = () => {
                       <h3 className="text-white font-medium mb-1">Adress</h3>
                       <p className="text-white/70">
                         DG Development<br />
-                        Exempelgatan 123<br />
-                        123 45 Stockholm<br />
+                        Vetevägen 22<br />
+                        187 69 Täby<br />
                         Sverige
                       </p>
                     </div>
                   </div>
                 </div>
-                
-                <div className="mt-10 p-6 bg-background/50 rounded-lg border border-white/10">
-                  <h3 className="text-white font-medium mb-2">Arbetstider</h3>
-                  <p className="text-white/70">
-                    Måndag - Fredag: 08:00 - 17:00<br />
-                    Helger: Stängt
-                  </p>
-                </div>
+
               </div>
             </div>
             

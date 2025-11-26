@@ -64,36 +64,23 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#2d1b4e' }}>
-      {/* SVG för vågig clip-path */}
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--bg-hero)' }}>
+      {/* SVG för vågig clip-path (endast desktop) */}
       <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
         <defs>
-          {/* Desktop - vertikal våg */}
+          {/* Desktop - vertikal våg (reverserad för vänster sida) */}
           <clipPath id="wavyRightEdge" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0 
-                     L 0.50,0 
-                     C 0.46,0.30 0.64,0.70 0.60,1
-                     L 0,1 Z" />
-          </clipPath>
-          {/* Mobil - horisontell våg (roterad 90 grader) */}
-          <clipPath id="wavyBottomEdge" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0 
-                     L 0,0.50
-                     C 0.30,0.46 0.70,0.64 1,0.60
-                     L 1,0
-                     L 0,0 Z" />
+            <path d="M 1,0 
+                     L 0.45,0 
+                     C 0.49,0.30 0.41,0.70 0.45,1
+                     L 1,1 Z" />
           </clipPath>
         </defs>
       </svg>
       
-      {/* CSS för responsiv clip-path */}
+      {/* CSS för responsiv clip-path (endast större desktop) */}
       <style>{`
-        @media (max-width: 767px) {
-          .hero-gradient-clip {
-            clip-path: url(#wavyBottomEdge) !important;
-          }
-        }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           .hero-gradient-clip {
             clip-path: url(#wavyRightEdge) !important;
           }
@@ -110,25 +97,19 @@ const Hero = () => {
         <StripeGradient key="hero-gradient" {...gradientProps} />
       </div>
       
-      {/* Befintlig gradientbakgrund - minskad opacitet */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80 z-10"></div>
-      
-      {/* Extra gradient overlay för bättre läsbarhet - justerad opacitet */}
+      {/* Mörk gradient overlay för bättre kontrast */}
       <div
-        className="absolute inset-0 bg-gradient-to-b z-20"
+        className="absolute inset-0 z-20"
         style={{
-          // Skräddarsydd gradient enligt instruktion
-          "--tw-gradient-stops":
-            "hsl(220deg 6.13% 3.56% / 47%), #000000a8 var(--tw-gradient-via-position), hsl(0deg 0% 0% / 40%)",
-        } as React.CSSProperties}
+          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.6) 100%)"
+        }}
       ></div>
-      
       <div className="container relative z-30 px-0 sm:px-20 py-12 sm:py-24 mx-auto flex flex-col">
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           {/* Vänster sida - Text innehåll */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8 max-w-lg md:max-w-none mx-auto md:mx-0">
             {/* Huvudrubrik med responsiv textstorlek */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white md:max-w-[30rem]">
               Från <span 
                 className="text-transparent bg-clip-text animate-gradient"
                 style={{ 
@@ -146,7 +127,7 @@ const Hero = () => {
             </h1>
             
             {/* Underrubrik med responsiv textstorlek och padding */}
-            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-[21rem]">
+            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-[21rem] md:max-w-[30rem]">
               Konsultation inom teknisk projektledning samt design.
               Från mindre uppdrag till omfattande system/projekt med helhetsansvar
             </p>

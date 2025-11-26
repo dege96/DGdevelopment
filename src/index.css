@@ -6,6 +6,7 @@
   :root {
     --background: 220 20% 8%;
     --foreground: 210 40% 98%;
+    --hero: 27 14% 15%;
 
     --card: 224 20% 10%;
     --card-foreground: 210 40% 98%;
@@ -46,11 +47,6 @@
 
   * {
     @apply border-border selection:bg-primary/20 selection:text-white transition-colors;
-  }
-
-  /* Sekundär bakgrundsfärg */
-  .bg-secondary-custom {
-    background-color: #191e27;
   }
 }
 
